@@ -65,15 +65,16 @@ const HeroSection: React.FC = () => {
 
           {/* Right Content - Fixed Image Section */}
           
-            <div className="relative min-w-80 lg:h-96">
-              <Image
-                src={generatedImage}
-                alt="Couple relaxing at home with KWW ceiling fan"
-                fill
-                className="object-contain rounded-lg"
-                priority
-              />
-            </div>
+            <div className="relative min-w-80 h-80 lg:h-96">
+  <Image
+    src={generatedImage}
+    alt="Couple relaxing at home with KWW ceiling fan"
+    fill
+    className="object-contain rounded-lg"
+    priority
+  />
+</div>
+
           </div>
         </div>
      

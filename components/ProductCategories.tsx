@@ -42,10 +42,10 @@ const ProductCategories = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold text-black mb-4">
+          <h2 className="text-4xl font-bold text-black mb-4">
             Our Product Categories
           </h2>
-          <p className="text-gray-800 text-2xl max-w-4xl mx-auto">
+          <p className="text-gray-800 text-xl max-w-4xl mx-auto">
             Discover our comprehensive range of electrical products designed for modern homes and businesses
           </p>
         </div>
