@@ -1,13 +1,35 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import generatedImage from "../public/generated-image.png"; // Properly import the image
+import generatedImage from "../public/generated-image.png";
 
 const HeroSection: React.FC = () => {
+  const [headerHeight, setHeaderHeight] = useState(140);
+
+  useEffect(() => {
+    const calculateHeaderHeight = () => {
+      const header = document.querySelector('header');
+      const navbar = document.querySelector('nav');
+      
+      if (header && navbar) {
+        const totalHeight = header.offsetHeight + navbar.offsetHeight;
+        setHeaderHeight(totalHeight);
+      }
+    };
+
+    setTimeout(calculateHeaderHeight, 100);
+    window.addEventListener('resize', calculateHeaderHeight);
+    
+    return () => window.removeEventListener('resize', calculateHeaderHeight);
+  }, []);
+
   return (
-    <section className="  bg-[#e7f4fa] py-16">
+    <section 
+      className="bg-[#e7f4fa] py-16 relative z-10"
+      style={{ paddingTop: `${headerHeight + 32}px` }}
+    >
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12  items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-6">
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
@@ -26,58 +48,35 @@ const HeroSection: React.FC = () => {
               savings. Stylish, smart & durable.
             </p>
 
-            <div className="flex space-x-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:space-x-4">
+              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center">
                 Explore Products
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
 
-              <button className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center">
+              <button className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center">
                 Shop Now
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
               </button>
             </div>
           </div>
 
-          {/* Right Content - Fixed Image Section */}
-          
-            <div className="relative min-w-80 h-80 lg:h-96">
-  <Image
-    src={generatedImage}
-    alt="Couple relaxing at home with KWW ceiling fan"
-    fill
-    className="object-contain rounded-lg"
-    priority
-  />
-</div>
-
+          {/* Right Content - Image Section */}
+          <div className="relative min-w-80 h-80 lg:h-96 z-0">
+            <Image
+              src={generatedImage}
+              alt="Couple relaxing at home with KWW ceiling fan"
+              fill
+              className="object-contain rounded-lg"
+              priority
+            />
           </div>
         </div>
-     
+      </div>
     </section>
   );
 };
