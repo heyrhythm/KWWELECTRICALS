@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import generatedImage from "../public/generated-image.png";
+import generatedImage from "@/public/assets/generated-image.png";
 
 const HeroSection: React.FC = () => {
   const [headerHeight, setHeaderHeight] = useState(140);
