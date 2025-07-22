@@ -3,7 +3,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import ProductCard from '@/components/ProductCard';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 interface Product {
   id: number;
@@ -192,7 +192,7 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
               className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
               aria-label="Previous page"
             >
-              <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
+              <FaArrowLeft className="w-6 h-6 text-gray-600" />
             </button>
             
             <span className="text-sm text-gray-500">
@@ -204,7 +204,7 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
               className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
               aria-label="Next page"
             >
-              <ChevronRightIcon className="w-6 h-6 text-gray-600" />
+              <FaArrowRight className="w-6 h-6 text-gray-600" />
             </button>
           </div>
         )}
