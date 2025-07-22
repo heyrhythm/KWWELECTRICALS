@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Navbar from './Navbar';
+import { FaUserCircle } from 'react-icons/fa';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Header: React.FC = () => {
   return (
-    <>
-    
-    <header className=" bg-white px-4 py-3 shadow-sm">
+    <header className="bg-white px-4 py-3 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
@@ -14,7 +14,10 @@ const Header: React.FC = () => {
             <div className="text-white font-bold text-xl">kww</div>
           </div>
           <div className="text-red-600 font-bold text-xl">
-            KWW<span className="font-normal text-gray-700 text-sm block">ELECTRICALS</span>
+            KWW
+            <span className="font-normal text-gray-700 text-sm block">
+              ELECTRICALS
+            </span>
           </div>
         </div>
 
@@ -34,14 +37,28 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Become A Dealer Button */}
-        <button className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap">
-          Become A Dealer
-        </button>
+        {/* Become A Dealer + Icons */}
+        <div className="flex items-center gap-2">
+          <button className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap">
+            Become A Dealer
+          </button>
+          {/* Profile Button */}
+          <button
+            className="ml-2 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600"
+            aria-label="Profile"
+          >
+            <FaUserCircle className="w-6 h-6 text-gray-600" />
+          </button>
+          {/* Cart Button */}
+          <button
+            className="ml-1 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600"
+            aria-label="Cart"
+          >
+            <AiOutlineShoppingCart className="w-6 h-6 text-gray-600" />
+          </button>
+        </div>
       </div>
     </header>
-  
-  </>
   );
 };
 
