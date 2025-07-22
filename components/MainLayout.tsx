@@ -11,7 +11,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, className = "" }) => 
   return (
     <>
       <Head />
-      <main className={` lg:pt-32 ${className}`}> {/* Adjust based on your head height */}
+      <main className={` lg:pt-15 ${className}`}> {/* Adjust based on your head height */}
         {children}
       </main>
     </>

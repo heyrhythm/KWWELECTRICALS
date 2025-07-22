@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="bg-[#e7f4fa] py-16 relative z-10"
+      className="bg-[#e7f4fa] lg:pb-22 relative z-10"
       style={{ paddingTop: `${headerHeight + 32}px` }}
     >
       <div className="max-w-7xl mx-auto px-4">

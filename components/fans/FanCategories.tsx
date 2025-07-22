@@ -45,7 +45,7 @@ const FanCategories: React.FC = () => {
                 href={`/products/fans/${category.slug}`}
                 className="group block"
               >
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-100 p-4 lg:p-6 text-center transition-all duration-300 group-hover:-translate-y-1">
+                <div className="bg-gray-100 rounded-xl shadow-sm hover:shadow-md border border-gray-300 p-4 lg:p-6 text-center transition-all duration-300 group-hover:-translate-y-1">
                   <div className="aspect-square mb-3 lg:mb-4 flex items-center justify-center">
                     <div className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20">
                       <Image

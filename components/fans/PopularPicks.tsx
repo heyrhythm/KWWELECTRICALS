@@ -210,9 +210,9 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
         )}
 
         {/* Products Grid - 2 rows of 4 products each on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20 ">
           {currentProducts.map(product => (
-            <ProductCard
+            <ProductCard 
               key={product.id}
               product={product}
               onViewProduct={onViewProduct}
