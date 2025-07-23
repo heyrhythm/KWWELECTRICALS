@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-br from-slate-100 to-blue-50 py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12 sm:pt-10 pt-6">
+    <section className="bg-gradient-to-br from-slate-100 to-blue-50 py-2 lg:py-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 lg:pb-16 lg:pt-15 sm:pt-10 pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-4 sm:space-y-6">
