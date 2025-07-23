@@ -28,10 +28,10 @@ const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="bg-[#e7f4fa] lg:pb-22 relative z-10"
-      style={{ paddingTop: `${headerHeight + 16}px` }}
+      className="bg-[#e7f4fa]  relative z-10 "
+      
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div className="max-w-7xl mx-auto pt-5 pb-5 lg:pt-10 lg:pb-10 px-3 sm:px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-4 sm:space-y-6">

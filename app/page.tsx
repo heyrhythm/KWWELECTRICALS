@@ -7,6 +7,10 @@ import AboutKWW from '@/components/AboutKWW';
 import WhyChooseKWW from '@/components/WhyChooseKWW';
 import Head from '@/components/Head';
 import MainLayout from '@/components/MainLayout';
+import ProductCategoryGrid from '@/components/ProductCategoryGrid';
+import MustPickProducts from '@/components/MustPickProducts';
+import Footer from '@/components/Footer';
+import FeaturedProducts from '@/components/FeaturedProducts';
 
 export default function Home() {
   return (
@@ -15,11 +19,16 @@ export default function Home() {
       <Navbar /> */}
       <MainLayout>
       {/* <Head /> */}
+      <ProductCategoryGrid />
       <HeroSection />
       <StatsSection />
       <ProductCategories />
       <AboutKWW />
+      <MustPickProducts />
+      
       <WhyChooseKWW />
+      <FeaturedProducts />
+      <Footer />
       </MainLayout>
     </main>
   );

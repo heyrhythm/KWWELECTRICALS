@@ -55,8 +55,8 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0">
-              <div className="bg-red-600 rounded-full p-1.5 sm:p-2 mr-2">
-                <div className="text-white font-bold text-sm sm:text-xl">kww</div>
+              <div className="bg-red-600 rounded-full w-15 h-15 flex items-center justify-center mr-2">
+                <div className="text-white font-bold text-sm sm:text-xl">KWW</div>
               </div>
               <div className="text-red-600 font-bold text-lg sm:text-xl">
                 KWW
