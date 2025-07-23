@@ -5,12 +5,12 @@ import Image from 'next/image';
 const HeroSection: React.FC = () => {
   return (
     <section className="bg-gradient-to-br from-slate-100 to-blue-50 py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12 sm:pt-10 pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+          <div className="space-y-4 sm:space-y-6">
+            <div >
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 <span className="text-gray-800">
                   Powerful Performance,
                 </span>
@@ -29,15 +29,15 @@ const HeroSection: React.FC = () => {
               </h1>
             </div>
             
-            <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed max-w-lg">
+            <p className="text-gray-600  text-sm sm:text-base lg:text-lg leading-relaxed max-w-lg">
               Switch to next-gen cooling with BLDC motor technology and low wattage operation. Good for comfort, great for your bill.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 text-center">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-1 lg:pt-4">
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center text-sm sm:text-base">
                 Shop Now
               </button>
-              <button className="border-2 border-red-600 text-red-600 hover:bg-red-50 px-8 py-3 rounded-lg font-semibold transition-colors duration-200 text-center">
+              <button className="border-2 border-red-600 text-red-600 hover:bg-red-50 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center text-sm sm:text-base">
                 Learn More
               </button>
             </div>

@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative">
+    <nav className="hidden  bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center px-4">
           {navItems.map((item) => (

@@ -1,7 +1,6 @@
-// components/PopularPicks.tsx
 "use client";
 
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import ProductCard from '@/components/ProductCard';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -71,7 +70,6 @@ const DEFAULT_PRODUCTS: Product[] = [
     colors: ['white', 'cream', 'brown'],
     isBestSeller: true
   },
-  // Second row of products
   {
     id: 5,
     name: 'KWW AIRCON Ceiling Fan',
@@ -130,6 +128,8 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
   onViewAll
 }) => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Memoize products to avoid recalculation
   const products = useMemo(() => 
@@ -137,18 +137,40 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
     [externalProducts]
   );
 
+  // Handle mounting and screen size detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    // Set mounted and initial screen size
+    setMounted(true);
+    checkScreenSize();
+
+    // Add resize listener
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Reset to first page when screen size changes
+  useEffect(() => {
+    if (mounted) {
+      setCurrentPage(0);
+    }
+  }, [isMobile, mounted]);
+
   // Memoize pagination calculations
   const paginationData = useMemo(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-    const itemsPerPage = isMobile ? MOBILE_PRODUCTS_PER_PAGE : PRODUCTS_PER_PAGE;
+    // Use desktop layout until mounted
+    const itemsPerPage = mounted && isMobile ? MOBILE_PRODUCTS_PER_PAGE : PRODUCTS_PER_PAGE;
     const totalPages = Math.ceil(products.length / itemsPerPage);
     
     return {
       itemsPerPage,
       totalPages,
-      showPagination: products.length > itemsPerPage
+      showPagination: products.length > itemsPerPage && mounted && isMobile
     };
-  }, [products.length]);
+  }, [products.length, mounted, isMobile]);
 
   // Memoize current products
   const currentProducts = useMemo(() => {
@@ -172,30 +194,30 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
   }, []);
 
   return (
-    <section className="bg-white py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-8 sm:py-12 lg:py-16 xl:py-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 lg:mb-6">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12 xl:mb-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 xl:mb-6">
             Popular Picks
           </h2>
-          <p className="text-gray-600 text-base lg:text-xl max-w-4xl mx-auto leading-relaxed">
+          <p className="text-gray-600 text-sm sm:text-base lg:text-xl max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
             These high-performing, energy-efficient picks are ruling the charts for a reason.
           </p>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Only show when mounted and mobile */}
         {paginationData.showPagination && (
-          <div className="flex justify-between items-center mb-6 lg:hidden">
+          <div className="flex justify-between items-center mb-4 sm:mb-6 lg:hidden">
             <button
               onClick={handlePrevPage}
               className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
               aria-label="Previous page"
             >
-              <FaArrowLeft className="w-6 h-6 text-gray-600" />
+              <FaArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
             </button>
             
-            <span className="text-sm text-gray-500">
+            <span className="text-xs sm:text-sm text-gray-500">
               Page {currentPage + 1} of {paginationData.totalPages}
             </span>
             
@@ -204,13 +226,13 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
               className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
               aria-label="Next page"
             >
-              <FaArrowRight className="w-6 h-6 text-gray-600" />
+              <FaArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" />
             </button>
           </div>
         )}
 
-        {/* Products Grid - 2 rows of 4 products each on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20 ">
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 xl:gap-6 mb-8 sm:mb-12 lg:mb-16 xl:mb-20">
           {currentProducts.map(product => (
             <ProductCard 
               key={product.id}
@@ -221,15 +243,15 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
           ))}
         </div>
 
-        {/* Mobile Pagination Dots */}
+        {/* Mobile Pagination Dots - Only show when mounted and mobile */}
         {paginationData.showPagination && (
-          <div className="flex justify-center mb-8 lg:hidden">
+          <div className="flex justify-center mb-6 sm:mb-8 lg:hidden">
             <div className="flex space-x-2">
               {Array.from({ length: paginationData.totalPages }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => handlePageSelect(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors duration-200 ${
                     index === currentPage 
                       ? 'bg-red-600' 
                       : 'bg-gray-300 hover:bg-gray-400'
@@ -246,7 +268,7 @@ const PopularPicks: React.FC<PopularPicksProps> = ({
           <div className="text-center">
             <button 
               onClick={onViewAll}
-              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 lg:px-10 lg:py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 text-sm sm:text-base"
             >
               View All Products
             </button>
