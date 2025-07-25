@@ -6,11 +6,11 @@ const Footer = () => {
   return (
     <footer className="bg-slate-800 text-gray-300">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto lg:px-4 lg:py-12 scale-70 md:scale-100 w-135 lg:w-full origin-top-left ">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Company Info - Left Section */}
-          <div className="lg:col-span-2 scale-90 md:scale-100">
+          <div className="lg:col-span-2">
             {/* Logo */}
             <div className="flex items-center mb-4">
               <div className="w-15 h-15 bg-red-600 rounded-full flex items-center justify-center mr-3">
@@ -23,7 +23,7 @@ const Footer = () => {
             </div>
             
             {/* Company Description */}
-            <p className="text-gray-400 text-[14px] lg:text-sm mb-6 leading-relaxed  ">
+            <p className="text-gray-400 text-[14px] lg:text-sm mb-6 leading-relaxed">
               Leading manufacturer of energy-efficient electrical products in India. 
               <br />
               Trusted by millions for quality, innovation, and sustainability.
@@ -92,7 +92,7 @@ const Footer = () => {
           
           <div className='lg:flex grid grid-cols-2 lg:flex-col-2 lg:gap-10 space-y-6'>
           {/* Our Products */}
-<div className='scale-80 md:scale-100'>
+<div>
   <h4 className="text-white font-semibold text-base sm:text-lg mb-3 sm:mb-4">
     Our Products
   </h4>
@@ -165,7 +165,7 @@ const Footer = () => {
 </div>
 
           {/* Quick Links & Support */}
-<div className='scale-90 md:scale-100 pt-[25px] lg:pt-0'>
+<div>
   <div className="mb-6 sm:mb-8">
     <h4 className="text-white font-semibold text-base sm:text-lg mb-3 sm:mb-4">
       Quick Links
@@ -266,7 +266,7 @@ const Footer = () => {
 
           
           {/* Stay Updated & Certifications */}
-          <div className='scale-80 md:scale-100 absolute lg:static w-70 lg:w-full top-100 origin-left left-4'>
+          <div>
             <div className="mb-8">
               <h4 className="text-white font-semibold text-lg mb-4">Stay Updated</h4>
               <p className="text-gray-400 text-sm mb-4 leading-relaxed">
@@ -315,13 +315,13 @@ const Footer = () => {
       </div>
       
       {/* Footer Bottom */}
-      <div className="border-t border-gray-700 py-6 scale-90 md:scale-100">
+      <div className="border-t border-gray-700 py-6">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-[11px] lg:text-sm mb-4 md:mb-0">
               © 2024 KWW Electricals. All rights reserved. | Made in India 🇮🇳
             </p>
-            <div className="flex flex-wrap gap-2 lg:gap-4 text-[11px] lg:text-sm">
+            <div className="flex flex-wrap gap-4 text-[11px] lg:text-sm">
               <Link href="#" className="text-gray-400 hover:text-red-500 transition-colors">Privacy Policy</Link>
               <Link href="#" className="text-gray-400 hover:text-red-500 transition-colors">Terms of Service</Link>
               <Link href="#" className="text-gray-400 hover:text-red-500 transition-colors">Return Policy</Link>

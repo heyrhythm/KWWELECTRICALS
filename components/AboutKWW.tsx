@@ -1,98 +1,88 @@
-import Image from 'next/image';
-import { FaAward, FaLeaf, FaUsers, FaGlobe } from 'react-icons/fa';
+"use client";
+import React from "react";
+import Image from "next/image";
+import { FaAward, FaLeaf, FaUsers, FaGlobe } from "react-icons/fa";
 
-const AboutKWW = () => {
-  const features = [
-    {
-      title: 'ISO Certified',
-      subtitle: 'Quality Standards',
-      icon: <FaAward className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-700" />,
-    },
-    {
-      title: 'Eco-Friendly',
-      subtitle: 'Sustainable Products',
-      icon: <FaLeaf className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-green-700" />,
-    },
-    {
-      title: 'Expert Team',
-      subtitle: 'Skilled Professionals',
-      icon: <FaUsers className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-700" />,
-    },
-    {
-      title: 'Pan-India',
-      subtitle: 'Nationwide Reach',
-      icon: <FaGlobe className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-700" />,
-    },
-  ];
+const features = [
+  {
+    title: "ISO Certified",
+    subtitle: "Quality Standards",
+    icon: <FaAward className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-700" />,
+  },
+  {
+    title: "Eco-Friendly",
+    subtitle: "Sustainable Products",
+    icon: <FaLeaf className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-green-700" />,
+  },
+  {
+    title: "Expert Team",
+    subtitle: "Skilled Professionals",
+    icon: <FaUsers className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-700" />,
+  },
+  {
+    title: "Pan-India",
+    subtitle: "Nationwide Reach",
+    icon: <FaGlobe className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-700" />,
+  },
+];
 
-  return (
-    <section className="bg-gray-50 py-8 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-4 sm:space-y-5 lg:space-y-6 px-2 sm:px-4 lg:px-14">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
-              About KWW Electricals
-            </h2>
-            <div>
-              <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed">
-                With over 20 years of expertise, KWW Electricals manufactures eco-friendly and high-performance electrical goods across India. We are committed to powering homes and businesses with sustainable, energy-efficient solutions.
-              </p>
-              <br />
-              <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed">
-                Our journey began with a simple mission: to make quality electrical products accessible to everyone while contributing to a greener planet. Today, we are proud to be trusted by millions of customers nationwide.
-              </p>
-            </div>
+const AboutKWW: React.FC = () => (
+  <section className="bg-gray-50 py-3 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6 h-100 lg:h-200">
+    <div className="scale-92 md:scale-100 lg:max-w-7xl lg:mx-auto pt-1 pb-1 lg:pt-10 lg:pb-10 sm:px-4 lg:px-6">
+      <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-center">
+        {/* Left Content (Text) */}
+        <div className="flex flex-col space-y-1 lg:space-y-6">
+          <h2 className="text-[13px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight truncate">
+            <span className="text-black">About</span>{" "}
+            <span className="text-black">KWW Electricals</span>
+          </h2>
+          <p className="text-gray-600 text-[10px] sm:text-base lg:text-lg leading-tight max-w-full lg:max-w-lg">
+            With over 20 years of expertise, KWW Electricals manufactures eco-friendly and high-performance electrical goods across India. We are committed to powering homes and businesses with sustainable, energy-efficient solutions.
+          </p>
+          <p className="text-gray-600 text-[10px] sm:text-base lg:text-lg leading-tight max-w-full lg:max-w-lg">
+            Our journey began with a simple mission: to make quality electrical products accessible to everyone while contributing to a greener planet. Today, we are proud to be trusted by millions of customers nationwide.
+          </p>
+          {/* Features Grid */}
+          <div className=" grid grid-cols-2 gap-5 sm:gap-7 md:gap-8 lg:gap-2 lg:mt-4 scale-75 md:scale-100 w-60 lg:w-120 origin-left ">
 
-            {/* Feature Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-7 lg:mt-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl flex items-center gap-2 sm:gap-3"
-                >
-                  <div className="bg-white rounded-lg p-1.5 sm:p-2 shadow-sm">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-700 text-base sm:text-lg lg:text-xl">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs sm:text-sm">
-                      {feature.subtitle}
-                    </p>
-                  </div>
+            {features.map((feature, idx) => (
+              <div key={idx} className="flex items-center gap-2  p-2">
+                <div className="bg-white rounded-lg p-2 shadow-sm flex items-center justify-center">
+                  {feature.icon}
                 </div>
-              ))}
-            </div>
-
-            {/* Call to Action Button */}
-           
+                <div>
+                  <h3 className="font-bold text-gray-700 text-[12px] sm:text-base lg:text-lg truncate">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 text-[8px] sm:text-xs lg:text-sm truncate">
+                    {feature.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-
-          {/* Image Section */}
-          <div className="relative order-first lg:order-last">
-            <div className="relative h-64 sm:h-80 lg:h-96 w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-xl">
-              <Image
-                src="/images/kww-building.jpg" // Replace with your actual image path
-                alt="KWW Electricals building with company logo on roof"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </div>
-        <div className='text-center lg:text-left lg:pl-15 mt-5 sm:mt-9 lg:mt-11 '>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6 rounded-xl transition-colors duration-300 shadow-lg hover:shadow-xl mt-6 sm:mt-7 lg:mt-8 text-sm sm:text-base">
-              Learn More About Us
+          {/* CTA Button */}
+          <div className="flex gap-2 sm:gap-4 lg:mt-5 scale-70 md:scale-100 origin-left">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-2 lg:px-4 lg:py-5 rounded-lg font-semibold flex items-center text-xs sm:text-base">
+              <span className="truncate">Learn More About Us</span>
+             
             </button>
+          </div>
         </div>
-         
+        {/* Right Content (Image) */}
+        <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 flex items-center justify-center">
+          <Image
+            src="/images/kww-building.jpg" // Update the actual image path as needed
+            alt="KWW Electricals building with company logo"
+            fill
+            className="object-contain rounded-lg"
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+          />
+        </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default AboutKWW;

@@ -53,7 +53,7 @@ const WhyChooseKWW = () => {
 
   return (
     <section className="bg-gray-50 py-8 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6">
-      <div className="max-w-7xl mx-auto scale-90 md:scale-100">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-20">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
@@ -65,7 +65,7 @@ const WhyChooseKWW = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10 lg:mb-12 px-0 sm:px-4 lg:px-20 scale-90 md:scale-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8 sm:mb-10 lg:mb-12 px-0 sm:px-4 lg:px-20">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -88,7 +88,7 @@ const WhyChooseKWW = () => {
         </div>
 
         {/* Statistics Section */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-4 sm:p-6 lg:p-8 scale-90 md:scale-100">
+        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-4 sm:p-6 lg:p-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">

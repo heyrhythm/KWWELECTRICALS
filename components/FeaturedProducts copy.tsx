@@ -80,10 +80,10 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-1 pb-180 lg:pb-50 sm:py-16 lg:py-30 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scale-90 md:scale-100 origin-top">
+    <section className="bg-gray-50 py-12 sm:py-16 lg:py-30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center  sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Featured & Best-Selling Products
           </h2>
@@ -93,7 +93,7 @@ const FeaturedProducts = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="absolute lg:static top-1   grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-8 scale-67 md:scale-100 w-130 lg:w-full origin-left ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {products.map((product) => (
             <div
               key={product.id}
@@ -174,6 +174,28 @@ const FeaturedProducts = () => {
           ))}
         </div>
 
+        {/* View All Products Button */}
+        {/* <div className="text-center mt-12">
+          <Link
+            href="#"
+            className="inline-flex items-center px-8 py-3 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-lg transition-colors duration-300"
+          >
+            View All Products
+            <svg
+              className="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
+        </div> */}
       </div>
     </section>
   );
