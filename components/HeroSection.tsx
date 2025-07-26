@@ -27,11 +27,11 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className=" bg-[#e7f4fa]    ">
+    <section className="bg-[#e7f4fa]">
       <div className="scale-92 md:scale-100 lg:max-w-7xl lg:mx-auto pt-1 pb-1 lg:pt-10 lg:pb-10 sm:px-4 lg:px-6">
-        <div className=" grid grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-center">
           {/* Left Content */}
-          <div className="space-y-4 sm:space-y-6 flex flex-col ">
+          <div className="space-y-4 sm:space-y-6 flex flex-col">
             <h1 className="text-[15px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               <span className="text-blue-600">Stay Cool</span>{" "}
               <span className="text-black">with</span>{" "}
@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
               savings. Stylish, smart & durable.
             </p>
 
-            <div className=" flex gap-2 sm:gap-4 mt-1 scale-70 md:scale-100 origin-left ">
+            <div className="flex gap-2 sm:gap-4 mt-1 scale-70 md:scale-100 origin-left">
               <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold flex items-center text-xs sm:text-base">
                 <span className="truncate">Explore Products</span>
                 <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,16 +64,18 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Content - Image Section */}
-          <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96">
-            <Image
-              src={generatedImage}
-              alt="Couple relaxing at home with KWW ceiling fan"
-              fill
-              className="object-contain rounded-lg"
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-            />
+          {/* Right Content - Image Section - FIXED */}
+          <div className="relative w-full aspect-square sm:aspect-[4/3] lg:aspect-[16/12] flex items-center justify-center">
+            <div className="relative w-full h-full">
+              <Image
+                src={generatedImage}
+                alt="Couple relaxing at home with KWW ceiling fan"
+                fill
+                className="object-contain rounded-lg"
+                priority
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 40vw"
+              />
+            </div>
           </div>
         </div>
       </div>

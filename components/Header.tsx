@@ -1,39 +1,46 @@
-'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { FaUserCircle, FaSearch, FaBars, FaTimes, FaChevronDown, FaChevronRight } from 'react-icons/fa';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import {
+  FaUserCircle,
+  FaSearch,
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+  FaChevronRight,
+} from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const Header: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState('Home');
+  const [activeItem, setActiveItem] = useState("Home");
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const router = useRouter();
 
   const navItems = [
-    'Home',
-    'Products',
-    'About',
-    'Services',
-    'Store Locator',
-    'Dealers',
-    'Blog',
-    'Careers',
-    'Contacts'
+    "Home",
+    "Products",
+    "About",
+    "Services",
+    "Store Locator",
+    "Dealers",
+    "Blog",
+    "Careers",
+    "Contacts",
   ];
 
   const productCategories = [
-    { name: 'Fans', route: '/products/fans' },
-    { name: 'LED Lights', route: '/products/led-lights' },
-    { name: 'Home Appliances', route: '/products/home-appliances' },
-    { name: 'Air Coolers', route: '/products/air-coolers' }
+    { name: "Fans", route: "/products/fans" },
+    { name: "LED Lights", route: "/products/led-lights" },
+    { name: "Home Appliances", route: "/products/home-appliances" },
+    { name: "Air Coolers", route: "/products/air-coolers" },
   ];
 
   const handleCategoryClick = (route: string) => {
-    setActiveItem('Products');
+    setActiveItem("Products");
     setIsProductsDropdownOpen(false);
     setIsMobileProductsOpen(false);
     setIsMobileMenuOpen(false);
@@ -42,7 +49,7 @@ const Header: React.FC = () => {
 
   const handleNavItemClick = (item: string) => {
     setActiveItem(item);
-    if (item !== 'Products') {
+    if (item !== "Products") {
       setIsMobileMenuOpen(false);
     }
   };
@@ -50,15 +57,14 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header with shadow */}
-      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10">
+      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10 ">
         <div className="max-w-7xl mx-auto">
           {/* Main Header Row */}
           <div className="flex items-center justify-between">
-            
             {/* Left Section: Hamburger Menu + Logo (Mobile) / Logo Only (Desktop) */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2  ">
               {/* Mobile Menu Button - Only on mobile */}
-              <div className="lg:hidden">
+              <div className="lg:hidden scale-85 lg:scale-100">
                 <button
                   className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -73,15 +79,16 @@ const Header: React.FC = () => {
               </div>
 
               {/* Logo - Always present */}
-              <div className="flex items-center flex-shrink-0">
-                <div className="bg-red-600 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-1">
-                  <div className="text-white font-bold text-sm sm:text-base">KWW</div>
-                </div>
-                <div className="text-red-600 font-bold text-base sm:text-lg lg:text-xl">
-                  KWW
-                  <span className="font-normal text-gray-700 text-xs sm:text-sm block">
-                    ELECTRICALS
-                  </span>
+              <div className="flex items-center flex-shrink-0 ">
+                
+                <div className="flex items-center scale-150 lg:scale-160">
+                  <Image
+                    src="/assets/icons/KWW Logo.svg"
+                    alt="KWW Electricals Logo"
+                    width={80}
+                    height={40}
+                    className="w-16 h-8 sm:w-20 sm:h-10 lg:w-24 lg:h-12"
+                  />
                 </div>
               </div>
             </div>
@@ -101,13 +108,13 @@ const Header: React.FC = () => {
             </div>
 
             {/* Right Section: Dealer + Profile + Cart */}
-            <div className="flex items-center gap-1 lg:gap-2">
+            <div className="flex items-center gap-1 lg:gap-6 -space-x-3">
               {/* Become A Dealer Button */}
-              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap">
-                <span className="lg:hidden">Dealer</span>
-                <span className="hidden lg:inline">Become A Dealer</span>
+              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2 ">
+                {/* <span className="lg:hidden">Dealer</span> */}
+                <span className=" lg:inline text-xs ">Become A Dealer</span>
               </button>
-              
+
               {/* Profile Button */}
               <button
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 scale-85 lg:scale-100"
@@ -115,7 +122,7 @@ const Header: React.FC = () => {
               >
                 <FaUserCircle className="w-5 h-5 lg:w-6 lg:h-6 text-gray-600" />
               </button>
-              
+
               {/* Cart Button */}
               <button
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 scale-85 lg:scale-100"
@@ -129,17 +136,14 @@ const Header: React.FC = () => {
       </header>
 
       {/* Mobile Search Bar - Separate section with top shadow */}
-      <div className="lg:hidden bg-white px-3 sm:px-4 py-3 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.1)] relative">
+      <div className="lg:hidden bg-white px-3 sm:px-4 py-2 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.1)] relative">
         <div className="max-w-7xl mx-auto">
-          <div className="border border-gray-300 rounded-full overflow-hidden relative">
+          <div className="border border-gray-300 rounded overflow-hidden relative text-xs">
             <input
               type="text"
               placeholder="Search Products"
-              className="w-full px-4 py-2.5 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-red-600/20 bg-white text-gray-700"
+              className="w-full px-4 py-1 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-red-600/20 bg-white text-gray-700"
             />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <FaSearch className="w-4 h-4 text-gray-400 cursor-pointer" />
-            </div>
           </div>
         </div>
       </div>
@@ -153,7 +157,7 @@ const Header: React.FC = () => {
                 {/* Navigation Items */}
                 {navItems.map((item) => (
                   <div key={item}>
-                    {item === 'Products' ? (
+                    {item === "Products" ? (
                       <div>
                         <button
                           onClick={() => {
@@ -162,25 +166,27 @@ const Header: React.FC = () => {
                           }}
                           className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-lg transition-colors duration-200 ${
                             activeItem === item
-                              ? 'text-red-600 bg-red-50 font-semibold'
-                              : 'text-gray-700 hover:text-red-600 hover:bg-gray-50'
+                              ? "text-red-600 bg-red-50 font-semibold"
+                              : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
                           }`}
                         >
                           <span>{item}</span>
-                          <FaChevronDown 
+                          <FaChevronDown
                             className={`w-4 h-4 transition-transform duration-200 ${
-                              isMobileProductsOpen ? 'rotate-180' : ''
+                              isMobileProductsOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
-                        
+
                         {/* Products Submenu */}
                         {isMobileProductsOpen && (
                           <div className="ml-4 mt-1 space-y-1">
                             {productCategories.map((category) => (
                               <button
                                 key={category.name}
-                                onClick={() => handleCategoryClick(category.route)}
+                                onClick={() =>
+                                  handleCategoryClick(category.route)
+                                }
                                 className="w-full text-left px-4 py-2.5 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
                               >
                                 {category.name}
@@ -194,8 +200,8 @@ const Header: React.FC = () => {
                         onClick={() => handleNavItemClick(item)}
                         className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
                           activeItem === item
-                            ? 'text-red-600 bg-red-50 font-semibold'
-                            : 'text-gray-700 hover:text-red-600 hover:bg-gray-50'
+                            ? "text-red-600 bg-red-50 font-semibold"
+                            : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
                         }`}
                       >
                         {item}
@@ -217,26 +223,30 @@ const Header: React.FC = () => {
               <div
                 key={item}
                 className="relative"
-                onMouseEnter={() => item === 'Products' && setIsProductsDropdownOpen(true)}
-                onMouseLeave={() => item === 'Products' && setIsProductsDropdownOpen(false)}
+                onMouseEnter={() =>
+                  item === "Products" && setIsProductsDropdownOpen(true)
+                }
+                onMouseLeave={() =>
+                  item === "Products" && setIsProductsDropdownOpen(false)
+                }
               >
                 <button
                   onClick={() => setActiveItem(item)}
                   className={`py-4 px-5 relative transition-colors duration-200 ${
                     activeItem === item
-                      ? 'text-red-600 font-semibold'
-                      : 'text-gray-700 hover:text-red-600'
+                      ? "text-red-600 font-semibold"
+                      : "text-gray-700 hover:text-red-600"
                   }`}
                 >
                   {item}
-                  {item === 'Products' && (
-                    <FaChevronDown 
+                  {item === "Products" && (
+                    <FaChevronDown
                       className={`w-4 h-4 inline ml-1 transition-transform duration-200 ${
-                        isProductsDropdownOpen ? 'rotate-180' : ''
+                        isProductsDropdownOpen ? "rotate-180" : ""
                       }`}
                     />
                   )}
-                  {item === 'Services' && (
+                  {item === "Services" && (
                     <FaChevronDown className="w-4 h-4 inline ml-1" />
                   )}
                   {activeItem === item && (
@@ -245,7 +255,7 @@ const Header: React.FC = () => {
                 </button>
 
                 {/* Products Dropdown Menu */}
-                {item === 'Products' && isProductsDropdownOpen && (
+                {item === "Products" && isProductsDropdownOpen && (
                   <div className="absolute top-full left-0 mt-0 w-48 bg-white shadow-lg rounded-b-md border border-gray-200 z-50">
                     <div className="py-2">
                       {productCategories.map((category) => (

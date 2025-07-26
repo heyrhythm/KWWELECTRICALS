@@ -18,64 +18,64 @@ interface ProductCategoryGridProps {
 }
 
 const DEFAULT_CATEGORIES: CategoryItem[] = [
-  // ... [same as before]
-    {
+  {
     id: 'ceiling-fan',
     name: 'Ceiling Fan',
-    image: '/images/categories/ceiling-fan.png',
+    image: '/assets/icons/Ceiling Fan Icon below Menu Bar.svg',
     route: '/products/ceiling-fans',
     bgColor: 'bg-red-100'
   },
   {
     id: 'table-fan',
     name: 'Table Fan',
-    image: '/images/categories/table-fan.png',
+    image: '/assets/icons/Table Fan Icon Below Menu Bar.svg',
     route: '/products/table-fans',
     bgColor: 'bg-blue-100'
   },
   {
     id: 'led-bulb',
-    name: 'LED Bulb',
-    image: '/images/categories/led-bulb.png',
+    name: 'LED Lights',
+    image: '/assets/icons/Our Product Categories LED Lights.svg',
     route: '/products/led-bulbs',
     bgColor: 'bg-yellow-100'
   },
   {
     id: 'panel-light',
     name: 'Panel Light',
-    image: '/images/categories/panel-light.png',
+    image: '/assets/icons/Panel Light Icon below Menu Bar.svg',
     route: '/products/panel-lights',
     bgColor: 'bg-purple-100'
   },
   {
     id: 'cooler',
     name: 'Cooler',
-    image: '/images/categories/cooler.png',
+    image: '/assets/icons/Cooler Icon below Menu Bar.svg',
     route: '/products/coolers',
     bgColor: 'bg-cyan-100'
   },
   {
     id: 'induction',
     name: 'Induction',
-    image: '/images/categories/induction.png',
+    image: '/assets/icons/Induction Icon below Menu Bar.svg',
     route: '/products/induction',
     bgColor: 'bg-gray-100'
   },
   {
     id: 'mixer-grinder',
     name: 'Mixer Grinder',
-    image: '/images/categories/mixer-grinder.png',
+    image: '/assets/icons/Mixer Grinder Icon below Menu Bar.svg',
     route: '/products/mixer-grinder',
     bgColor: 'bg-green-100'
   },
   {
     id: 'iron',
     name: 'Iron',
-    image: '/images/categories/iron.png',
+    image: '/assets/icons/Iron Icon below Menu Bar.svg',
     route: '/products/iron',
     bgColor: 'bg-orange-100'
   }
 ];
+
 
 const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
   categories = DEFAULT_CATEGORIES,
@@ -90,7 +90,7 @@ const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
   // Example scaling: 100% desktop, 90% tablet, 75% mobile (tweak as needed)
   return (
     <div
-      className={` lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 overflow-x-auto lg:overflow-x-hidden
+      className={` lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 overflow-x-auto lg:overflow-x-hidden pt-5 lg:pt-0 
  ${className}`}
       // Optionally: style overflows to avoid horizontal scroll
       
