@@ -49,20 +49,40 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-sm">
+      {/* Header with shadow */}
+      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Main Header Row */}
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center flex-shrink-0">
-              <div className="bg-red-600 rounded-full w-15 h-15 flex items-center justify-center mr-2">
-                <div className="text-white font-bold text-sm sm:text-xl">KWW</div>
+            
+            {/* Left Section: Hamburger Menu + Logo (Mobile) / Logo Only (Desktop) */}
+            <div className="flex items-center gap-2">
+              {/* Mobile Menu Button - Only on mobile */}
+              <div className="lg:hidden">
+                <button
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  aria-label="Menu"
+                >
+                  {isMobileMenuOpen ? (
+                    <FaTimes className="w-5 h-5 text-gray-600" />
+                  ) : (
+                    <FaBars className="w-5 h-5 text-gray-600" />
+                  )}
+                </button>
               </div>
-              <div className="text-red-600 font-bold text-lg sm:text-xl">
-                KWW
-                <span className="font-normal text-gray-700 text-xs sm:text-sm block">
-                  ELECTRICALS
-                </span>
+
+              {/* Logo - Always present */}
+              <div className="flex items-center flex-shrink-0">
+                <div className="bg-red-600 rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-1">
+                  <div className="text-white font-bold text-sm sm:text-base">KWW</div>
+                </div>
+                <div className="text-red-600 font-bold text-base sm:text-lg lg:text-xl">
+                  KWW
+                  <span className="font-normal text-gray-700 text-xs sm:text-sm block">
+                    ELECTRICALS
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -80,76 +100,55 @@ const Header: React.FC = () => {
               </div>
             </div>
 
-            {/* Desktop Right Section */}
-            <div className="hidden lg:flex items-center gap-2">
+            {/* Right Section: Dealer + Profile + Cart */}
+            <div className="flex items-center gap-1 lg:gap-2">
               {/* Become A Dealer Button */}
-              <button className="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap">
-                Become A Dealer
+              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap">
+                <span className="lg:hidden">Dealer</span>
+                <span className="hidden lg:inline">Become A Dealer</span>
               </button>
-
+              
               {/* Profile Button */}
               <button
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 scale-85 lg:scale-100"
                 aria-label="Profile"
               >
-                <FaUserCircle className="w-6 h-6 text-gray-600" />
+                <FaUserCircle className="w-5 h-5 lg:w-6 lg:h-6 text-gray-600" />
               </button>
-
+              
               {/* Cart Button */}
               <button
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 scale-85 lg:scale-100"
                 aria-label="Cart"
               >
-                <AiOutlineShoppingCart className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Mobile/Tablet Right Section */}
-            <div className="flex lg:hidden items-center gap-1">
-              {/* Search Icon for Mobile/Tablet */}
-              <button
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                aria-label="Search"
-              >
-                <FaSearch className="w-5 h-5 text-gray-600" />
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Menu"
-              >
-                {isMobileMenuOpen ? (
-                  <FaTimes className="w-5 h-5 text-gray-600" />
-                ) : (
-                  <FaBars className="w-5 h-5 text-gray-600" />
-                )}
+                <AiOutlineShoppingCart className="w-5 h-5 lg:w-6 lg:h-6 text-gray-600" />
               </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Mobile Search Row */}
-          {isSearchOpen && (
-            <div className="lg:hidden mt-3 pb-2">
-              <div className="border border-gray-300 rounded-full overflow-hidden relative">
-                <input
-                  type="text"
-                  placeholder="Search Products"
-                  className="w-full px-4 py-2.5 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-red-600/20 bg-white text-gray-700"
-                  autoFocus
-                />
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <FaSearch className="w-4 h-4 text-gray-400 cursor-pointer" />
-                </div>
-              </div>
+      {/* Mobile Search Bar - Separate section with top shadow */}
+      <div className="lg:hidden bg-white px-3 sm:px-4 py-3 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.1)] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="border border-gray-300 rounded-full overflow-hidden relative">
+            <input
+              type="text"
+              placeholder="Search Products"
+              className="w-full px-4 py-2.5 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-red-600/20 bg-white text-gray-700"
+            />
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <FaSearch className="w-4 h-4 text-gray-400 cursor-pointer" />
             </div>
-          )}
+          </div>
+        </div>
+      </div>
 
-          {/* Mobile/Tablet Menu */}
-          {isMobileMenuOpen && (
-            <div className="lg:hidden mt-3 pb-3 border-t border-gray-200 pt-3">
+      {/* Mobile/Tablet Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white px-3 sm:px-4 pb-3 shadow-md relative z-20">
+          <div className="max-w-7xl mx-auto">
+            <div className="border-t border-gray-200 pt-3">
               <div className="flex flex-col space-y-1">
                 {/* Navigation Items */}
                 {navItems.map((item) => (
@@ -204,34 +203,11 @@ const Header: React.FC = () => {
                     )}
                   </div>
                 ))}
-
-                {/* Divider */}
-                <div className="border-t border-gray-200 my-3"></div>
-
-                {/* Action Buttons */}
-                <div className="space-y-2">
-                  {/* Become A Dealer */}
-                  <button className="w-full bg-red-700 hover:bg-red-800 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200">
-                    Become A Dealer
-                  </button>
-
-                  {/* Profile and Cart Row */}
-                  <div className="flex gap-2">
-                    <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                      <FaUserCircle className="w-5 h-5" />
-                      <span>Profile</span>
-                    </button>
-                    <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                      <AiOutlineShoppingCart className="w-5 h-5" />
-                      <span>Cart</span>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </header>
+      )}
 
       {/* Desktop Navbar - Only visible on large screens */}
       <nav className="hidden lg:block bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative">
