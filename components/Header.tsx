@@ -142,7 +142,7 @@ const Header: React.FC = () => {
             <input
               type="text"
               placeholder="Search Products"
-              className="w-full px-4 py-1 rounded-full border-none focus:outline-none focus:ring-2 focus:ring-red-600/20 bg-white text-gray-700"
+              className="w-full px-4 py-1 rounded-full   bg-white focus:outline-0"
             />
           </div>
         </div>
