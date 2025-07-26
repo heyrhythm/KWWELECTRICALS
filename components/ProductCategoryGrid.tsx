@@ -21,21 +21,21 @@ const DEFAULT_CATEGORIES: CategoryItem[] = [
   {
     id: 'ceiling-fan',
     name: 'Ceiling Fan',
-    image: '/assets/icons/Ceiling Fan Icon below Menu Bar.svg',
+    image: '/assets/icons/Fan Icon below Menu Bar_ImgID1.png',
     route: '/products/ceiling-fans',
     bgColor: 'bg-red-100'
   },
   {
     id: 'table-fan',
     name: 'Table Fan',
-    image: '/assets/icons/Table Fan Icon Below Menu Bar.svg',
+    image: '/assets/icons/Table Fan Icon Below Menu Bar_ImgID1.png',
     route: '/products/table-fans',
     bgColor: 'bg-blue-100'
   },
   {
     id: 'led-bulb',
     name: 'LED Lights',
-    image: '/assets/icons/Our Product Categories LED Lights.svg',
+    image: '/assets/icons/LED Lamp Icon below Menu Bar.svg',
     route: '/products/led-bulbs',
     bgColor: 'bg-yellow-100'
   },
@@ -76,7 +76,6 @@ const DEFAULT_CATEGORIES: CategoryItem[] = [
   }
 ];
 
-
 const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
   categories = DEFAULT_CATEGORIES,
   onCategoryClick,
@@ -86,26 +85,20 @@ const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
     if (onCategoryClick) onCategoryClick(category);
   };
 
-  // CHANGED: Render the same grid at all sizes, but scale it with breakpoints
-  // Example scaling: 100% desktop, 90% tablet, 75% mobile (tweak as needed)
   return (
     <div
-      className={` lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 overflow-x-auto lg:overflow-x-hidden pt-5 lg:pt-0 
- ${className}`}
-      // Optionally: style overflows to avoid horizontal scroll
-      
-      
+      className={`lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 overflow-x-auto lg:overflow-x-hidden pt-5 lg:pt-0 ${className}`}
     >
       <div
         className={`pl-35 sm:pl-30 lg:pl-0 
           grid grid-cols-8 gap-30 lg:gap-17
           transform
-          scale-70  // default mobile (you can change scale as needed)
+          scale-70
           sm:scale-90
           md:scale-100
           transition-transform duration-300
         `}
-        style={{ minWidth:800, maxWidth: "100%" }} // CHANGED: control minWidth for consistent scaling
+        style={{ minWidth: 800, maxWidth: "100%" }}
       >
         {categories.map((category) => (
           <CategoryCard
@@ -119,7 +112,6 @@ const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
   );
 };
 
-// Card component is unchanged except no responsive sizing needed
 interface CategoryCardProps {
   category: CategoryItem;
   onClick?: (category: CategoryItem) => void;
@@ -136,12 +128,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
       className="block"
       onClick={handleClick}
     >
-      <div
-        className="
-          group cursor-pointer text-center transition-all duration-300
-          w-[92px] mx-auto
-        "
-      >
+      <div className="group cursor-pointer text-center transition-all duration-300 w-[92px] mx-auto">
         <div className={`
           relative mx-auto mb-3 rounded-full overflow-hidden shadow-sm
           w-20 h-20
@@ -149,31 +136,31 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
           group-hover:shadow-md group-hover:scale-105 
           transition-all duration-300
         `}>
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <Image
-              src={category.image}
-              alt={`${category.name} icon`}
-              fill
-              className="object-contain p-2"
-              sizes="64px"
-            />
+          {/* Updated image container with better fitting */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-30 h-30"> {/* Increased from implicit size to w-14 h-14 */}
+              <Image
+                src={category.image}
+                alt={`${category.name} icon`}
+                fill
+                className="object-contain scale-136" // Added scale-110 to zoom the image
+                sizes="64px" // Updated to match w-14 (56px)
+              />
+            </div>
           </div>
         </div>
-        <h3
-          className="
-             text-[13px] sm:text-sm lg:text-[13px] font-medium text-gray-700
-            group-hover:text-gray-900 transition-colors duration-200
-            leading-tight
-            truncate whitespace-nowrap overflow-hidden
-            w-full
-          "
-        >
+        <h3 className="
+          text-[13px] sm:text-sm lg:text-[13px] font-medium text-gray-700
+          group-hover:text-gray-900 transition-colors duration-200
+          leading-tight
+          truncate whitespace-nowrap overflow-hidden
+          w-full
+        ">
           {category.name}
         </h3>
       </div>
     </Link>
   );
 };
-
 
 export default ProductCategoryGrid;

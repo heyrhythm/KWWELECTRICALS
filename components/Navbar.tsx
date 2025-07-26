@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+
 const Navbar: React.FC = () => {
   const [activeItem, setActiveItem] = useState('Home');
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const router = useRouter();
+
 
   const navItems = [
     'Home',
@@ -19,6 +21,7 @@ const Navbar: React.FC = () => {
     'Contacts'
   ];
 
+
   const productCategories = [
     { name: 'Fans', route: '/products/fans' },
     { name: 'LED Lights', route: '/products/led-lights' },
@@ -26,11 +29,13 @@ const Navbar: React.FC = () => {
     { name: 'Air Coolers', route: '/products/air-coolers' }
   ];
 
+
   const handleCategoryClick = (route: string) => {
     setActiveItem('Products');
     setIsProductsDropdownOpen(false);
     router.push(route);
   };
+
 
   return (
     <nav className="hidden  bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative">
@@ -53,12 +58,12 @@ const Navbar: React.FC = () => {
               >
                 {item}
                 {item === 'Products' && (
-                  <svg 
+                  <svg
                     className={`w-4 h-4 inline ml-1 transition-transform duration-200 ${
                       isProductsDropdownOpen ? 'rotate-180' : ''
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -73,6 +78,7 @@ const Navbar: React.FC = () => {
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
                 )}
               </button>
+
 
               {/* Products Dropdown Menu */}
               {item === 'Products' && isProductsDropdownOpen && (
@@ -97,5 +103,6 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
+
 
 export default Navbar;

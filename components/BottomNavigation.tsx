@@ -62,7 +62,7 @@ export default function BottomNavigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 rounded-t-2xl 
+    <nav className="  md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 rounded-t-2xl 
     shadow-sm shadow-gray-900/30 safe-area-pb">
       <div className="grid grid-cols-5 h-16">
         {navItems.map((item) => {

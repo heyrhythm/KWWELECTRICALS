@@ -11,13 +11,13 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import ProductCatalog from "./ProductCatalog";
 
 const Header: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
-  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
-  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
+  const [isProductCatalogOpen, setIsProductCatalogOpen] = useState(false);
   const router = useRouter();
 
   const navItems = [
@@ -32,37 +32,21 @@ const Header: React.FC = () => {
     "Contacts",
   ];
 
-  const productCategories = [
-    { name: "Fans", route: "/products/fans" },
-    { name: "LED Lights", route: "/products/led-lights" },
-    { name: "Home Appliances", route: "/products/home-appliances" },
-    { name: "Air Coolers", route: "/products/air-coolers" },
-  ];
-
-  const handleCategoryClick = (route: string) => {
-    setActiveItem("Products");
-    setIsProductsDropdownOpen(false);
-    setIsMobileProductsOpen(false);
-    setIsMobileMenuOpen(false);
-    router.push(route);
-  };
-
   const handleNavItemClick = (item: string) => {
     setActiveItem(item);
-    if (item !== "Products") {
-      setIsMobileMenuOpen(false);
-    }
+    setIsProductCatalogOpen(false);
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <>
       {/* Header with shadow */}
-      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10 ">
+      <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Main Header Row */}
           <div className="flex items-center justify-between">
             {/* Left Section: Hamburger Menu + Logo (Mobile) / Logo Only (Desktop) */}
-            <div className="flex items-center gap-2  ">
+            <div className="flex items-center gap-2">
               {/* Mobile Menu Button - Only on mobile */}
               <div className="lg:hidden scale-85 lg:scale-100">
                 <button
@@ -79,8 +63,7 @@ const Header: React.FC = () => {
               </div>
 
               {/* Logo - Always present */}
-              <div className="flex items-center flex-shrink-0 ">
-                
+              <div className="flex items-center flex-shrink-0">
                 <div className="flex items-center scale-150 lg:scale-160">
                   <Image
                     src="/assets/icons/KWW Logo.svg"
@@ -110,9 +93,8 @@ const Header: React.FC = () => {
             {/* Right Section: Dealer + Profile + Cart */}
             <div className="flex items-center gap-1 lg:gap-6 -space-x-3">
               {/* Become A Dealer Button */}
-              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2 ">
-                {/* <span className="lg:hidden">Dealer</span> */}
-                <span className=" lg:inline text-xs ">Become A Dealer</span>
+              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2">
+                <span className="lg:inline text-xs">Become A Dealer</span>
               </button>
 
               {/* Profile Button */}
@@ -142,7 +124,7 @@ const Header: React.FC = () => {
             <input
               type="text"
               placeholder="Search Products"
-              className="w-full px-4 py-1 rounded-full   bg-white focus:outline-0"
+              className="w-full px-4 py-1 rounded-full bg-white focus:outline-0"
             />
           </div>
         </div>
@@ -156,58 +138,17 @@ const Header: React.FC = () => {
               <div className="flex flex-col space-y-1">
                 {/* Navigation Items */}
                 {navItems.map((item) => (
-                  <div key={item}>
-                    {item === "Products" ? (
-                      <div>
-                        <button
-                          onClick={() => {
-                            handleNavItemClick(item);
-                            setIsMobileProductsOpen(!isMobileProductsOpen);
-                          }}
-                          className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-lg transition-colors duration-200 ${
-                            activeItem === item
-                              ? "text-red-600 bg-red-50 font-semibold"
-                              : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
-                          }`}
-                        >
-                          <span>{item}</span>
-                          <FaChevronDown
-                            className={`w-4 h-4 transition-transform duration-200 ${
-                              isMobileProductsOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-
-                        {/* Products Submenu */}
-                        {isMobileProductsOpen && (
-                          <div className="ml-4 mt-1 space-y-1">
-                            {productCategories.map((category) => (
-                              <button
-                                key={category.name}
-                                onClick={() =>
-                                  handleCategoryClick(category.route)
-                                }
-                                className="w-full text-left px-4 py-2.5 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                              >
-                                {category.name}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => handleNavItemClick(item)}
-                        className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
-                          activeItem === item
-                            ? "text-red-600 bg-red-50 font-semibold"
-                            : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
-                        }`}
-                      >
-                        {item}
-                      </button>
-                    )}
-                  </div>
+                  <button
+                    key={item}
+                    onClick={() => handleNavItemClick(item)}
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
+                      activeItem === item
+                        ? "text-red-600 bg-red-50 font-semibold"
+                        : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {item}
+                  </button>
                 ))}
               </div>
             </div>
@@ -215,66 +156,99 @@ const Header: React.FC = () => {
         </div>
       )}
 
-      {/* Desktop Navbar - Only visible on large screens */}
-      <nav className="hidden lg:block bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center px-4">
-            {navItems.map((item) => (
-              <div
-                key={item}
-                className="relative"
-                onMouseEnter={() =>
-                  item === "Products" && setIsProductsDropdownOpen(true)
-                }
-                onMouseLeave={() =>
-                  item === "Products" && setIsProductsDropdownOpen(false)
-                }
-              >
-                <button
-                  onClick={() => setActiveItem(item)}
-                  className={`py-4 px-5 relative transition-colors duration-200 ${
-                    activeItem === item
-                      ? "text-red-600 font-semibold"
-                      : "text-gray-700 hover:text-red-600"
-                  }`}
+      {/* Desktop Navbar with Hover Area Management */}
+      <div 
+        className="hidden lg:block relative"
+        onMouseEnter={() => setIsProductCatalogOpen(false)} // Close if hovering elsewhere
+      >
+        <nav className="bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative z-30">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex justify-between items-center px-4">
+              {navItems.map((item) => (
+                <div
+                  key={item}
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (item === "Products") {
+                      setIsProductCatalogOpen(true);
+                    } else {
+                      setIsProductCatalogOpen(false);
+                    }
+                  }}
                 >
-                  {item}
-                  {item === "Products" && (
-                    <FaChevronDown
-                      className={`w-4 h-4 inline ml-1 transition-transform duration-200 ${
-                        isProductsDropdownOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
-                  {item === "Services" && (
-                    <FaChevronDown className="w-4 h-4 inline ml-1" />
-                  )}
-                  {activeItem === item && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
-                  )}
-                </button>
+                  <button
+                    onClick={() => handleNavItemClick(item)}
+                    className={`py-4 px-5 relative transition-colors duration-200 ${
+                      activeItem === item || (item === "Products" && isProductCatalogOpen)
+                        ? "text-red-600 font-semibold"
+                        : "text-gray-700 hover:text-red-600"
+                    }`}
+                  >
+                    {item}
+                    {item === "Products" && (
+                      <FaChevronDown
+                        className={`w-4 h-4 inline ml-1 transition-transform duration-200 ${
+                          isProductCatalogOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    )}
+                    {item === "Services" && (
+                      <FaChevronDown className="w-4 h-4 inline ml-1" />
+                    )}
+                    {(activeItem === item || (item === "Products" && isProductCatalogOpen)) && (
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
+                    )}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </nav>
+      </div>
 
-                {/* Products Dropdown Menu */}
-                {item === "Products" && isProductsDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-0 w-48 bg-white shadow-lg rounded-b-md border border-gray-200 z-50">
-                    <div className="py-2">
-                      {productCategories.map((category) => (
-                        <button
-                          key={category.name}
-                          onClick={() => handleCategoryClick(category.route)}
-                          className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors duration-150"
-                        >
-                          {category.name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+      {/* Floating Product Catalog Overlay - Above Home Page */}
+      {isProductCatalogOpen && (
+        <div
+          className="fixed inset-0 z-40"
+          onMouseLeave={() => setIsProductCatalogOpen(false)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/30 transition-all duration-300" />
+          
+          {/* Floating Product Catalog - Centered and Elevated */}
+          <div className="absolute inset-0 flex items-center justify-center px-4 pt-20">
+            <div 
+              className="bg-white rounded-2xl shadow-2xl max-w-7xl w-full transform transition-all duration-300 scale-100 animate-fade-in-up"
+              onMouseLeave={(e) => e.stopPropagation()} // Prevent closing when inside catalog
+            >
+              {/* Header */}
+              
+              
+              {/* Product Catalog Content */}
+              <div className="rounded-b-2xl overflow-hidden">
+                <ProductCatalog onClose={() => setIsProductCatalogOpen(false)} />
               </div>
-            ))}
+            </div>
           </div>
         </div>
-      </nav>
+      )}
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 };

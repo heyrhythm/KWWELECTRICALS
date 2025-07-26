@@ -12,6 +12,7 @@ import MustPickProducts from '@/components/MustPickProducts';
 import Footer from '@/components/Footer';
 import FeaturedProducts from '@/components/FeaturedProducts';
 
+
 export default function Home() {
   return (
     <main className="min-h-screen w-full overflow-x-hidden ">
@@ -21,6 +22,7 @@ export default function Home() {
       {/* <Head /> */}
       <ProductCategoryGrid />
       <HeroSection />
+      {/* <ProductCatalog /> */}
       <StatsSection />
       <ProductCategories />
       <AboutKWW />
