@@ -23,7 +23,7 @@ const categories: Category[] = [
   {
     id: 'led-lights',
     name: 'LED Lights',
-    image: '/assets/Led_lights_Menu.jpg',
+    image: '/assets/Led_Lights_Menu.jpg',
     bgColor: 'bg-amber-50',
     products: [
       { name: 'Panel Light', url: '/products/led-lights/panel-light' },
@@ -56,7 +56,7 @@ const categories: Category[] = [
   {
     id: 'appliances',
     name: 'Appliances',
-    image: '/assets/Appliances_Menu.jpg',
+    image: '/assets/Appliances_Menu.JPG',
     bgColor: 'bg-red-50',
     products: [
       { name: 'Water Heater', url: '/products/appliances/water-heater' },
@@ -77,7 +77,7 @@ const categories: Category[] = [
   {
     id: 'coolers',
     name: 'Coolers',
-    image: '/assets/Air Cooler.jpg',
+    image: '/assets/Air Cooler.JPG',
     bgColor: 'bg-slate-50',
     products: [
       { name: 'Aria', url: '/products/coolers/aria' },
