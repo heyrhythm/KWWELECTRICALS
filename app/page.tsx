@@ -20,6 +20,7 @@ import DealerLocator from '@/components/dealer-locator';
 import NoStoreBanner from '@/components/NoStoreBanner';
 import SocialMediaSection from '@/components/SocialMediaSection';
 import KWWElectricalsCareerPage from '@/components/KWWElectricalsCareerPage';
+import Career from '@/components/career/career';
 
 
 export default function Home() {
@@ -47,7 +48,8 @@ export default function Home() {
       <DealerLocator />
       <NoStoreBanner />
       <SocialMediaSection />
-      <KWWElectricalsCareerPage />
+      <Career/>
+      {/* <KWWElectricalsCareerPage /> */}
       {/* <Footer /> */}
       
     </main>

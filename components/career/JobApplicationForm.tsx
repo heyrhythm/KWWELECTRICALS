@@ -1,0 +1,246 @@
+"use client";
+import React, { useState } from 'react';
+
+interface JobApplicationFormProps {
+  className?: string;
+}
+
+const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ className = '' }) => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    position: '',
+    experience: '',
+    location: '',
+    coverLetter: '',
+    resume: null as File | null
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({
+      ...prev,
+      resume: file
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  return (
+    <div className={`flex items-center justify-center ${className}`}>
+      <div className="w-full max-w-4xl bg-blue-50 rounded-lg sm:rounded-xl py-16 sm:py-20 px-4 sm:px-8 lg:px-16">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Apply for a Position
+            </h2>
+            <p className="text-gray-600 text-sm sm:text-base">
+              Ready to join our team? Fill out the application form below and we&apos;ll get back to you soon.
+            </p>
+          </div>
+
+          {/* Application Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* Full Name */}
+              <div>
+                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  placeholder="Enter your full name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Email Address */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* Phone Number */}
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors"
+                  required
+                />
+              </div>
+
+              {/* Position Applied For */}
+              <div>
+                <label htmlFor="position" className="block text-sm font-medium text-gray-700 mb-2">
+                  Position Applied For *
+                </label>
+                <select
+                  id="position"
+                  name="position"
+                  value={formData.position}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors bg-white"
+                  required
+                >
+                  <option value="">Select a position</option>
+                  <option value="senior-electrical-engineer">Senior Electrical Engineer</option>
+                  <option value="regional-sales-manager">Regional Sales Manager</option>
+                  <option value="quality-assurance-specialist">Quality Assurance Specialist</option>
+                  <option value="digital-marketing-executive">Digital Marketing Executive</option>
+                  <option value="production-supervisor">Production Supervisor</option>
+                  <option value="hr-business-partner">HR Business Partner</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {/* Years of Experience */}
+              <div>
+                <label htmlFor="experience" className="block text-sm font-medium text-gray-700 mb-2">
+                  Years of Experience *
+                </label>
+                <select
+                  id="experience"
+                  name="experience"
+                  value={formData.experience}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors bg-white"
+                  required
+                >
+                  <option value="">Select experience</option>
+                  <option value="0-1">0-1 years</option>
+                  <option value="1-3">1-3 years</option>
+                  <option value="3-5">3-5 years</option>
+                  <option value="5-8">5-8 years</option>
+                  <option value="8+">8+ years</option>
+                </select>
+              </div>
+
+              {/* Preferred Location */}
+              <div>
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                  Preferred Location
+                </label>
+                <select
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors bg-white"
+                >
+                  <option value="">Select location</option>
+                  <option value="new-delhi">New Delhi</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="bangalore">Bangalore</option>
+                  <option value="chennai">Chennai</option>
+                  <option value="gurgaon">Gurgaon</option>
+                  <option value="any">Any Location</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Upload Resume */}
+            <div>
+              <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-2">
+                Upload Resume *
+              </label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-8 text-center hover:border-blue-400 transition-colors">
+                <div className="mb-4">
+                  <svg className="w-8 h-8 text-gray-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                </div>
+                <input
+                  type="file"
+                  id="resume"
+                  name="resume"
+                  onChange={handleFileChange}
+                  accept=".pdf,.doc,.docx"
+                  className="hidden"
+                  required
+                />
+                <label htmlFor="resume" className="cursor-pointer">
+                  <span className="text-gray-500 text-sm">
+                    {formData.resume ? formData.resume.name : 'PDF, DOC, DOCX up to 5MB'}
+                  </span>
+                  <br />
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">
+                    Click to browse files
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            {/* Cover Letter */}
+            <div>
+              <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-2">
+                Cover Letter
+              </label>
+              <textarea
+                id="coverLetter"
+                name="coverLetter"
+                value={formData.coverLetter}
+                onChange={handleInputChange}
+                rows={5}
+                placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 sm:py-4 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+            >
+              <span>Submit Application</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JobApplicationForm;

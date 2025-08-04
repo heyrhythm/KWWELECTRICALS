@@ -1,4 +1,4 @@
-// app/(public)/dealer-locator/page.tsx          ←  Next-13/14 app-router layout
+// app/(public)/dealer-locator/page.tsx
 'use client';
 
 import { useMemo, useState } from 'react';
@@ -9,11 +9,12 @@ import {
   LocateFixed,
   List as ListIcon,
   Map as MapIcon,
+  ChevronDown,
 } from 'lucide-react';
-import { ChevronDown } from 'lucide-react';
-/* ------------------------------------------------------------------------- */
-/*  1)  DUMMY DATA – six dealers                                             */
-/* ------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------ */
+/* DUMMY DATA – dealers                                                */
+/* ------------------------------------------------------------------ */
 const dealers = [
   {
     id: 1,
@@ -128,9 +129,9 @@ const dealers = [
   },
 ];
 
-/* ------------------------------------------------------------------------- */
-/*  2)  PAGE COMPONENT                                                       */
-/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------ */
+/* PAGE COMPONENT                                                      */
+/* ------------------------------------------------------------------ */
 export default function DealerLocator() {
   /* ────────── local UI state ────────── */
   const [query, setQuery] = useState('');
@@ -139,52 +140,48 @@ export default function DealerLocator() {
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   /* ────────── derived filtered list ─── */
-  const filtered = useMemo(() => {
-    return dealers.filter((d) => {
-      const matchesQuery =
-        query === '' ||
-        d.name.toLowerCase().includes(query.toLowerCase()) ||
-        d.address.toLowerCase().includes(query.toLowerCase());
+  const filtered = useMemo(
+    () =>
+      dealers.filter((d) => {
+        const q = query.toLowerCase();
+        const matchesQuery =
+          q === '' ||
+          d.name.toLowerCase().includes(q) ||
+          d.address.toLowerCase().includes(q);
 
-      const matchesState =
-        stateFilter === 'All States' || d.state === stateFilter;
+        const matchesState = stateFilter === 'All States' || d.state === stateFilter;
+        const matchesType = typeFilter === 'All Types' || d.type === typeFilter;
 
-      const matchesType = typeFilter === 'All Types' || d.type === typeFilter;
-
-      return matchesQuery && matchesState && matchesType;
-    });
-  }, [query, stateFilter, typeFilter]);
+        return matchesQuery && matchesState && matchesType;
+      }),
+    [query, stateFilter, typeFilter],
+  );
 
   /* ─────────── unique dropdown values ─────────── */
   const states = Array.from(new Set(dealers.map((d) => d.state))).sort();
   const types = Array.from(new Set(dealers.map((d) => d.type))).sort();
 
-  /* --------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------ */
   return (
     <>
       <Head>
         <title>Dealer Locator | KWW Electricals</title>
       </Head>
 
-      <main className="min-h-screen bg-gray-50 py-10 px-6">
-        {/* ─────────────────────────────────────────────── */}
-        {/* HEADER TEXT                                    */}
-        {/* ─────────────────────────────────────────────── */}
-        <div className="max-w-6xl mx-auto mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+      <main className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+        {/* ────────── HEADER ────────── */}
+        <div className="max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto mb-8 sm:mb-10 text-center">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900">
             Find a KWW Dealer Near You
           </h1>
-          <p className="text-gray-600 mt-3">
-            Locate authorised KWW Electricals dealers for sales, installation,
-            and after-sales support.
+          <p className="text-gray-600 mt-2 sm:mt-3 text-sm sm:text-base">
+            Locate authorised KWW dealers for sales, installation and after-sales support.
           </p>
         </div>
 
-        {/* ─────────────────────────────────────────────── */}
-        {/* FILTER BAR                                     */}
-        {/* ─────────────────────────────────────────────── */}
-        <div className="max-w-6xl mx-auto mb-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
-          <div className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-3 md:space-y-0">
+        {/* ────────── FILTER BAR ────────── */}
+        <div className="max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto mb-6 sm:mb-8 bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-5">
+          <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
             {/* Search */}
             <div className="relative flex-1">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -193,97 +190,95 @@ export default function DealerLocator() {
                 placeholder="Search by city, area, or store name…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-sm"
               />
             </div>
 
             {/* State dropdown */}
-            <div className="relative w-full md:w-40">
-  <select
-    value={stateFilter}
-    onChange={(e) => setStateFilter(e.target.value)}
-    className="w-full pl-4 pr-10 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 appearance-none bg-white"
-  >
-    <option>All States</option>
-    {states.map((s) => (
-      <option key={s}>{s}</option>
-    ))}
-  </select>
-  <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-</div>
+            <div className="relative w-full md:w-44">
+              <select
+                value={stateFilter}
+                onChange={(e) => setStateFilter(e.target.value)}
+                className="w-full pl-4 pr-10 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 appearance-none bg-white text-sm"
+              >
+                <option>All States</option>
+                {states.map((s) => (
+                  <option key={s}>{s}</option>
+                ))}
+              </select>
+              <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
 
-{/* Type dropdown with icon overlay */}
-<div className="relative w-full md:w-40">
-  <select
-    value={typeFilter}
-    onChange={(e) => setTypeFilter(e.target.value)}
-    className="w-full pl-4 pr-10 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 appearance-none bg-white"
-  >
-    <option>All Types</option>
-    {types.map((t) => (
-      <option key={t}>{t}</option>
-    ))}
-  </select>
-  <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-</div>
+            {/* Type dropdown */}
+            <div className="relative w-full md:w-44">
+              <select
+                value={typeFilter}
+                onChange={(e) => setTypeFilter(e.target.value)}
+                className="w-full pl-4 pr-10 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 appearance-none bg-white text-sm"
+              >
+                <option>All Types</option>
+                {types.map((t) => (
+                  <option key={t}>{t}</option>
+                ))}
+              </select>
+              <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
 
-            {/* Near Me */}
+            {/* Near-me */}
             <button
-              onClick={() => {
+              onClick={() =>
                 navigator.geolocation?.getCurrentPosition(
                   (pos) =>
                     alert(
-                      `Latitude: ${pos.coords.latitude}\nLongitude: ${pos.coords.longitude}\n(Implement distance filtering here)`
+                      `Latitude: ${pos.coords.latitude}\nLongitude: ${pos.coords.longitude}\n(Implement distance filtering here)`,
                     ),
-                  () => alert('Location permission denied.')
-                );
-              }}
-              className="flex items-center justify-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-lg md:ml-auto"
+                  () => alert('Location permission denied.'),
+                )
+              }
+              className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2.5 rounded-lg md:ml-auto"
             >
               <LocateFixed className="w-4 h-4" />
-              <span>Near Me</span>
+              Near Me
             </button>
           </div>
 
-          {/*  Results count & view toggle  */}
-          <div className="mt-4 flex items-center justify-between">
+          {/* Results count + view toggle */}
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <p className="text-sm text-gray-600">
               Found <span className="font-medium">{filtered.length}</span>{' '}
               {filtered.length === 1 ? 'store' : 'stores'}
             </p>
 
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
               <button
                 onClick={() => setViewMode('list')}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-md text-sm font-medium border ${
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium border ${
                   viewMode === 'list'
                     ? 'bg-indigo-600 text-white border-indigo-600'
                     : 'border-gray-300 text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 <ListIcon className="w-4 h-4" />
-                <span>List</span>
+                List
               </button>
               <button
                 onClick={() => setViewMode('map')}
-                className={`flex items-center space-x-1 px-3 py-1.5 rounded-md text-sm font-medium border ${
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium border ${
                   viewMode === 'map'
                     ? 'bg-indigo-600 text-white border-indigo-600'
                     : 'border-gray-300 text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 <MapIcon className="w-4 h-4" />
-                <span>Map</span>
+                Map
               </button>
             </div>
           </div>
         </div>
 
-        {/* ─────────────────────────────────────────────── */}
-        {/*  CARD GRID  (or placeholder Map)                */}
-        {/* ─────────────────────────────────────────────── */}
+        {/* ────────── RESULTS AREA ────────── */}
         {viewMode === 'list' ? (
-          <div className="  max-w-6xl mx-auto grid grid-cols-2 gap-8">
+          <div className="max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-8">
             {filtered.map((d) => (
               <DealerLocationCard
                 key={d.id}
@@ -291,19 +286,17 @@ export default function DealerLocator() {
                 onDirections={() =>
                   window.open(
                     `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                      d.address
-                    )}`
+                      d.address,
+                    )}`,
                   )
                 }
-                onCall={() =>
-                  window.open(`tel:${d.phone.replace(/\s+/g, '')}`)
-                }
+                onCall={() => window.open(`tel:${d.phone.replace(/\s+/g, '')}`)}
               />
             ))}
           </div>
         ) : (
-          <div className="max-w-6xl mx-auto h-[500px] bg-gray-200 rounded-2xl flex items-center justify-center text-gray-600">
-            {/* Replace with real map component (e.g. Google Maps, Leaflet) */}
+          <div className="max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto h-[420px] sm:h-[500px] bg-gray-200 rounded-2xl flex items-center justify-center text-gray-600">
+            {/* Replace with real map component */}
             Map view coming soon…
           </div>
         )}
