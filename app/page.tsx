@@ -11,6 +11,15 @@ import ProductCategoryGrid from '@/components/ProductCategoryGrid';
 import MustPickProducts from '@/components/MustPickProducts';
 // import Footer from '@/components/Footer';
 import FeaturedProducts from '@/components/FeaturedProducts';
+import PromoComponent from '@/components/PromoComponent';
+import CustomerTestimonials from '@/components/CustomerTestimonials';
+import CertificationsBadges from '@/components/CertificationsBadges';
+import BlogShowcase from '@/components/BlogShowcase';
+import DealerPartner from '@/components/DealerPartner';
+import DealerLocator from '@/components/dealer-locator';
+import NoStoreBanner from '@/components/NoStoreBanner';
+import SocialMediaSection from '@/components/SocialMediaSection';
+import KWWElectricalsCareerPage from '@/components/KWWElectricalsCareerPage';
 
 
 export default function Home() {
@@ -18,20 +27,29 @@ export default function Home() {
     <main className="min-h-screen w-full overflow-x-hidden ">
       {/* <Header />
       <Navbar /> */}
-      <MainLayout>
+      
       {/* <Head /> */}
       <ProductCategoryGrid />
       <HeroSection />
       {/* <ProductCatalog /> */}
       <StatsSection />
       <ProductCategories />
-      <AboutKWW />
+      {/* <AboutKWW /> */}
       <MustPickProducts />
       
       <WhyChooseKWW />
       <FeaturedProducts />
+      <PromoComponent />
+      <CustomerTestimonials />
+      <CertificationsBadges />
+      <BlogShowcase />
+      <DealerPartner />
+      <DealerLocator />
+      <NoStoreBanner />
+      <SocialMediaSection />
+      <KWWElectricalsCareerPage />
       {/* <Footer /> */}
-      </MainLayout>
+      
     </main>
   );
 }

@@ -89,6 +89,7 @@ const categories: Category[] = [
 
 const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
   const [mounted, setMounted] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(categories[0]);
 
   useEffect(() => {
     setMounted(true);
@@ -98,30 +99,31 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
     window.location.href = url;
   };
 
+  const handleCategoryClick = (category: Category) => {
+    setSelectedCategory(category);
+  };
+
   if (!mounted) {
     return (
       <div 
-        className="w-full py-8 z-50" // Removed px-4 sm:px-6 lg:px-8 and max-w-7xl mx-auto
+        className="w-full py-8 z-50"
         onMouseLeave={onClose}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6"> {/* Added px-6 only to the grid */}
-          {categories.map((category) => (
-            <div key={category.id} className={` rounded-3xl p-6 shadow-sm`}>
-              <div className="w-full h-32 rounded-2xl bg-gray-100 flex items-center justify-center mb-4">
-                <span className="text-gray-400">Loading...</span>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
-                {category.name}
-              </h3>
-              <div className="space-y-2">
-                {category.products.slice(0, 5).map((product, index) => (
-                  <div key={index} className="text-sm text-gray-700">
-                    {product.name}
-                  </div>
-                ))}
-              </div>
+        <div className="flex h-96">
+          {/* Loading state */}
+          <div className="w-1/3 border-r border-gray-200 pr-6">
+            <div className="space-y-4">
+              {categories.map((category) => (
+                <div key={category.id} className="flex items-center space-x-3 p-3">
+                  <div className="w-12 h-12 rounded-lg bg-gray-100"></div>
+                  <span className="text-gray-400">Loading...</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="w-2/3 pl-6">
+            <div className="text-gray-400">Loading products...</div>
+          </div>
         </div>
       </div>
     );
@@ -129,44 +131,95 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
 
   return (
     <div 
-      className="max-w-7xl mx-auto py-8 z-50" // Removed all side padding and max-width constraints
+      className="max-w-7xl mx-auto py-8 z-50"
       onMouseLeave={onClose}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-1"> {/* Minimal padding only on the grid */}
-        {categories.map((category) => (
-          <div key={category.id} className={`rounded-3xl p-6 `}>
-            {/* Category Image */}
-            <div className="w-full h-32 rounded-2xl overflow-hidden mb-4 bg-white shadow-sm">
-              <Image
-                src={category.image}
-                alt={category.name}
-                width={280}
-                height={128}
-                className="w-full h-full object-cover"
-                priority={false}
-              />
-            </div>
-            
-            {/* Category Name */}
-            <h3 className="text-lg font-bold text-gray-900 mb-4">
-              {category.name}
-            </h3>
-
-            {/* Product List */}
-            <div className="space-y-2">
-              {category.products.map((product, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleProductClick(product.url)}
-                  className="block w-full text-left text-sm text-gray-700 hover:text-gray-900 hover:font-medium transition-all duration-200 py-1"
-                >
-                  {product.name}
-                </button>
-              ))}
-            </div>
+      <div className="flex h-96 px-6">
+        {/* Left Side - Categories */}
+        <div className="w-1/3 border-r border-gray-200 pr-6">
+          <div className="space-y-2">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryClick(category)}
+                className={`flex items-center space-x-3 w-full p-3 rounded-xl transition-all duration-200 hover:bg-gray-50 ${
+                  selectedCategory?.id === category.id 
+                    ? 'bg-blue-50 border border-blue-200' 
+                    : 'hover:shadow-sm'
+                }`}
+              >
+                {/* Category Image */}
+                <div className="w-12 h-12 rounded-lg overflow-hidden bg-white shadow-sm flex-shrink-0">
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                    priority={false}
+                  />
+                </div>
+                
+                {/* Category Name */}
+                <span className={`text-sm font-medium ${
+                  selectedCategory?.id === category.id 
+                    ? 'text-blue-700' 
+                    : 'text-gray-700'
+                }`}>
+                  {category.name}
+                </span>
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Right Side - Products with Scroll */}
+        <div className="w-2/3 pl-6">
+          {selectedCategory && (
+            <>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {selectedCategory.name}
+              </h3>
+              
+              {/* Scrollable Product List */}
+              <div className="h-80 overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-2">
+                  {selectedCategory.products.map((product, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleProductClick(product.url)}
+                      className="block w-full text-left text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg hover:shadow-sm"
+                    >
+                      {product.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
       </div>
+
+      {/* Custom Scrollbar Styles */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
+        }
+      `}</style>
     </div>
   );
 };

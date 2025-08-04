@@ -372,10 +372,10 @@ const MustPickProducts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#e0cccc] py-4 sm:py-6 lg:py-8">
-      <div className="container mx-auto px-2 sm:px-4 lg:px-6">
+    <div className="min-h-screen bg-[#e0cccc]  sm:py-6 lg:py-8">
+      <div className="scale-90 md:scale-100 container mx-auto px-2 sm:px-4 lg:px-6">
         {/* Responsive Header */}
-        <div className="w-full py-6 sm:py-8 lg:py-12 px-2 sm:px-4">
+        <div className="w-full py-2 sm:py-8 lg:py-12 px-2 sm:px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  font-bold text-gray-800 mb-2 sm:mb-4 leading-tight px-2">
               Must-Have Picks This Season

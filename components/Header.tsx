@@ -32,10 +32,45 @@ const Header: React.FC = () => {
     "Contacts",
   ];
 
+  // Updated navigation handler with routing
   const handleNavItemClick = (item: string) => {
     setActiveItem(item);
     setIsProductCatalogOpen(false);
     setIsMobileMenuOpen(false);
+
+    // Route to different pages based on nav item
+    switch (item) {
+      case "Home":
+        router.push("/");
+        break;
+      case "About":
+        router.push("/about");
+        break;
+      case "Products":
+        // Handle products - maybe show catalog or go to products page
+        // router.push("/products");
+        break;
+      case "Services":
+        router.push("/services");
+        break;
+      case "Store Locator":
+        router.push("/store-locator");
+        break;
+      case "Dealers":
+        router.push("/dealers");
+        break;
+      case "Blog":
+        router.push("/blog");
+        break;
+      case "Careers":
+        router.push("/careers");
+        break;
+      case "Contacts":
+        router.push("/contacts");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -64,7 +99,10 @@ const Header: React.FC = () => {
 
               {/* Logo - Always present */}
               <div className="flex items-center flex-shrink-0">
-                <div className="flex items-center scale-150 lg:scale-160">
+                <div 
+                  className="flex items-center scale-150 lg:scale-160 cursor-pointer"
+                  onClick={() => handleNavItemClick("Home")}
+                >
                   <Image
                     src="/assets/icons/KWW Logo.svg"
                     alt="KWW Electricals Logo"
@@ -93,7 +131,10 @@ const Header: React.FC = () => {
             {/* Right Section: Dealer + Profile + Cart */}
             <div className="flex items-center gap-1 lg:gap-6 -space-x-3">
               {/* Become A Dealer Button */}
-              <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2">
+              <button 
+                className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2"
+                onClick={() => handleNavItemClick("Dealers")}
+              >
                 <span className="lg:inline text-xs">Become A Dealer</span>
               </button>
 
@@ -222,7 +263,6 @@ const Header: React.FC = () => {
               onMouseLeave={(e) => e.stopPropagation()} // Prevent closing when inside catalog
             >
               {/* Header */}
-              
               
               {/* Product Catalog Content */}
               <div className="rounded-b-2xl overflow-hidden">
