@@ -163,7 +163,7 @@ export default function DealerLocator() {
 
   /* ------------------------------------------------------------------ */
   return (
-    <>
+    <div className='scale-90 md:scale-100 -mt-10 md:-mt-0 md:py-10'>
       <Head>
         <title>Dealer Locator | KWW Electricals</title>
       </Head>
@@ -301,6 +301,6 @@ export default function DealerLocator() {
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }

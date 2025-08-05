@@ -106,23 +106,28 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
   if (!mounted) {
     return (
       <div 
-        className="w-full py-8 z-50"
+        className="max-w-4xl h-screen shadow-2xl overflow-hidden flex"
         onMouseLeave={onClose}
       >
-        <div className="flex h-96">
-          {/* Loading state */}
-          <div className="w-1/3 border-r border-gray-200 pr-6">
-            <div className="space-y-4">
-              {categories.map((category) => (
-                <div key={category.id} className="flex items-center space-x-3 p-3">
-                  <div className="w-12 h-12 rounded-lg bg-gray-100"></div>
-                  <span className="text-gray-400">Loading...</span>
-                </div>
-              ))}
-            </div>
+        {/* Loading Categories */}
+        <div className="w-64 border-r border-gray-200 bg-gray-50 overflow-y-auto">
+          <div className="p-4 space-y-3">
+            {categories.map((category) => (
+              <div key={category.id} className="flex items-center space-x-4 p-4">
+                <div className="w-16 h-16 rounded-lg bg-gray-200 animate-pulse"></div>
+                <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
+              </div>
+            ))}
           </div>
-          <div className="w-2/3 pl-6">
-            <div className="text-gray-400">Loading products...</div>
+        </div>
+        
+        {/* Loading Products */}
+        <div className="flex-1 bg-white p-6">
+          <div className="h-6 bg-gray-200 rounded w-32 mb-4 animate-pulse"></div>
+          <div className="space-y-3">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+            ))}
           </div>
         </div>
       </div>
@@ -131,37 +136,40 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
 
   return (
     <div 
-      className="max-w-7xl mx-auto py-8 z-50"
+      className="max-w-7xl h-screen shadow-2xl overflow-hidden flex"
       onMouseLeave={onClose}
     >
-      <div className="flex h-96 px-6">
-        {/* Left Side - Categories */}
-        <div className="w-1/3 border-r border-gray-200 pr-6">
+      {/* Left Side - Categories Strip */}
+      <div className="w-150 border-r border-gray-200 bg-gray-50 overflow-y-auto custom-scrollbar flex-shrink-0">
+        <div className="p-4">
+          <h2 className="text-lg font-bold text-gray-900 mb-4 sticky top-0 bg-gray-50 pb-2">
+            Categories
+          </h2>
           <div className="space-y-2">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => handleCategoryClick(category)}
-                className={`flex items-center space-x-3 w-full p-3 rounded-xl transition-all duration-200 hover:bg-gray-50 ${
+                className={`flex items-center space-x-10 w-full p-4 rounded-xl transition-all duration-200 hover:bg-white hover:shadow-sm ${
                   selectedCategory?.id === category.id 
-                    ? 'bg-blue-50 border border-blue-200' 
-                    : 'hover:shadow-sm'
+                    ? 'bg-white shadow-md border border-blue-200 ring-1 ring-blue-100' 
+                    : 'hover:scale-[1.02]'
                 }`}
               >
                 {/* Category Image */}
-                <div className="w-12 h-12 rounded-lg overflow-hidden bg-white shadow-sm flex-shrink-0">
+                <div className="w-36 h-30 rounded-lg overflow-hidden bg-white shadow-sm flex-shrink-0">
                   <Image
                     src={category.image}
                     alt={category.name}
-                    width={48}
-                    height={48}
+                    width={150}
+                    height={70}
                     className="w-full h-full object-cover"
                     priority={false}
                   />
                 </div>
                 
                 {/* Category Name */}
-                <span className={`text-sm font-medium ${
+                <span className={`text-lg font-medium ${
                   selectedCategory?.id === category.id 
                     ? 'text-blue-700' 
                     : 'text-gray-700'
@@ -172,42 +180,63 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
             ))}
           </div>
         </div>
-
-        {/* Right Side - Products with Scroll */}
-        <div className="w-2/3 pl-6">
-          {selectedCategory && (
-            <>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {selectedCategory.name}
-              </h3>
-              
-              {/* Scrollable Product List */}
-              <div className="h-80 overflow-y-auto pr-2 custom-scrollbar">
-                <div className="space-y-2">
-                  {selectedCategory.products.map((product, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleProductClick(product.url)}
-                      className="block w-full text-left text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg hover:shadow-sm"
-                    >
-                      {product.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-        </div>
       </div>
 
-      {/* Custom Scrollbar Styles */}
+      {/* Right Side - Products Strip */}
+      <div className="flex-1 bg-white overflow-y-auto custom-scrollbar">
+        {selectedCategory && (
+          <div className="p-6">
+            {/* Sticky Header */}
+            <div className="sticky top-0 bg-white pb-4 mb-4 border-b border-gray-100">
+              <h3 className="text-xl font-bold text-gray-900">
+                {selectedCategory.name}
+              </h3>
+              <p className="text-sm text-gray-500 mt-1">
+                {selectedCategory.products.length} products available
+              </p>
+            </div>
+            
+            {/* Products Grid */}
+            <div className="space-y-2">
+              {selectedCategory.products.map((product, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleProductClick(product.url)}
+                  className="group block w-full text-left p-4 rounded-lg border border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all duration-200 hover:shadow-sm hover:scale-[1.01]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                      {product.name}
+                    </span>
+                    <svg 
+                      className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M9 5l7 7-7 7" 
+                      />
+                    </svg>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Enhanced Custom Scrollbar Styles */}
       <style jsx>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }
         
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f1f5f9;
+          background: #f8fafc;
           border-radius: 3px;
         }
         

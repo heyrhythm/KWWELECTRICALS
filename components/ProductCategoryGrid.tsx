@@ -393,7 +393,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, isMobile
           transition-all duration-300
         `}>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className={`relative ${isMobile ? 'w-6 h-6' : 'w-8 h-8'}`}>
+            <div className={`relative ${isMobile ? 'w-24 h-24' : 'w-36 h-36'}`}>
               <Image
                 src={category.image}
                 alt={`${category.name} icon`}

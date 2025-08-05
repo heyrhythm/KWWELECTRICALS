@@ -6,9 +6,11 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 const DealerPartner: React.FC = () => {
   return (
-    <section className="bg-gradient-to-br from-[#ecf2ff] to-[#e8efff] py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+    
+    <section className='bg-gradient-to-br from-[#ecf2ff] to-[#e8efff] py-2 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8'>
+    <div className=" scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto">
       {/* ─────────── 1) HEADER ─────────── */}
-      <div className="max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+      <div className=" max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto text-center mb-10 sm:mb-14">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">
           Become a KWW Dealer Partner
         </h2>
@@ -185,7 +187,8 @@ const DealerPartner: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    </section>  
   );
 };
 
