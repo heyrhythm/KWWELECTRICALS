@@ -21,14 +21,14 @@ const DEFAULT_CATEGORIES: CategoryItem[] = [
   {
     id: 'ceiling-fan',
     name: 'Ceiling Fan',
-    image: '/assets/icons/Fan Icon below Menu Bar_ImgID1.png',
+    image: '/assets/icons/Ceiling Fan Icon below Menu Bar.svg',
     route: '/products/ceiling-fans',
     bgColor: 'bg-red-100'
   },
   {
     id: 'table-fan',
     name: 'Table Fan',
-    image: '/assets/icons/Table Fan Icon Below Menu Bar_ImgID1.png',
+    image: '/assets/icons/Table Fan Icon Below Menu Bar_ImgID1.svg',
     route: '/products/table-fans',
     bgColor: 'bg-blue-100'
   },
@@ -388,7 +388,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, isMobile
         <div className={`
           relative mx-auto mb-3 rounded-full overflow-hidden shadow-sm
           ${isMobile ? 'w-14 h-14' : 'w-20 h-20'}
-          ${category.bgColor || "bg-gray-100"}
+         
           group-hover:shadow-md group-hover:scale-105 
           transition-all duration-300
         `}>
@@ -398,7 +398,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, isMobile
                 src={category.image}
                 alt={`${category.name} icon`}
                 fill
-                className="object-contain"
+                className="object-contain scale-150 md:scale-130"
                 sizes={isMobile ? "24px" : "32px"}
               />
             </div>

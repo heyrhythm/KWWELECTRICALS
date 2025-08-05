@@ -13,102 +13,11 @@ import {
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ProductCatalog from "./ProductCatalog";
 
-/* ---------- TYPES ---------- */
-interface Product {
-  name: string;
-  url: string;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  image: string;
-  bgColor: string;
-  products: Product[];
-}
-
-/* ---------- DATA ---------- */
-const categories: Category[] = [
-  {
-    id: "led-lights",
-    name: "LED Lights",
-    image: "/assets/Led_Lights_Menu.jpg",
-    bgColor: "bg-amber-50",
-    products: [
-      { name: "Panel Light", url: "/products/led-lights/panel-light" },
-      { name: "Down Light", url: "/products/led-lights/down-light" },
-      { name: "LED Lamp", url: "/products/led-lights/led-lamp" },
-      { name: "Batten Light", url: "/products/led-lights/batten-light" },
-      { name: "Spot Light", url: "/products/led-lights/spot-light" },
-      { name: "Track Light", url: "/products/led-lights/track-light" },
-      { name: "Flood Light", url: "/products/led-lights/flood-light" },
-      { name: "Street Light", url: "/products/led-lights/street-light" },
-      { name: "High Bay Light", url: "/products/led-lights/high-bay-light" },
-      { name: "Outdoor Light", url: "/products/led-lights/outdoor-light" },
-      { name: "Strip Light", url: "/products/led-lights/strip-light" },
-    ],
-  },
-  {
-    id: "fans",
-    name: "Fans",
-    image: "/assets/Fans_Menu.JPG",
-    bgColor: "bg-orange-50",
-    products: [
-      { name: "Ceiling Fan", url: "/products/fans/ceiling-fan" },
-      { name: "Table Fan", url: "/products/fans/table-fan" },
-      { name: "Wall Fan", url: "/products/fans/wall-fan" },
-      { name: "Pedestal Fan", url: "/products/fans/pedestal-fan" },
-      { name: "Exhaust Fan", url: "/products/fans/exhaust-fan" },
-      { name: "Cabin Fan", url: "/products/fans/cabin-fan" },
-    ],
-  },
-  {
-    id: "appliances",
-    name: "Appliances",
-    image: "/assets/Appliances_Menu.JPG",
-    bgColor: "bg-red-50",
-    products: [
-      { name: "Water Heater", url: "/products/appliances/water-heater" },
-      { name: "Geyser", url: "/products/appliances/geyser" },
-      { name: "Immersion Water Heater", url: "/products/appliances/immersion-water-heater" },
-      { name: "Infrared Cooktop", url: "/products/appliances/infrared-cooktop" },
-      { name: "Induction Cooker", url: "/products/appliances/induction-cooker" },
-      { name: "Steam Iron", url: "/products/appliances/steam-iron" },
-      { name: "Dry Iron", url: "/products/appliances/dry-iron" },
-      { name: "Mixer Grinder", url: "/products/appliances/mixer-grinder" },
-      { name: "Blender", url: "/products/appliances/blender" },
-      { name: "Electric Kettle", url: "/products/appliances/electric-kettle" },
-      { name: "Room Heater", url: "/products/appliances/room-heater" },
-      { name: "Quartz Heater", url: "/products/appliances/quartz-heater" },
-      { name: "Fan Heater", url: "/products/appliances/fan-heater" },
-    ],
-  },
-  {
-    id: "coolers",
-    name: "Coolers",
-    image: "/assets/Air Cooler.JPG",
-    bgColor: "bg-slate-50",
-    products: [
-      { name: "Aria", url: "/products/coolers/aria" },
-      { name: "Breeza", url: "/products/coolers/breeza" },
-      { name: "Windsor", url: "/products/coolers/windsor" },
-    ],
-  },
-];
-
-/* ---------- COMPONENT ---------- */
 const Header: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
-  
-  /* mobile-specific product dropdown */
-  const [isMobileProductOpen, setIsMobileProductOpen] = useState(false);
-  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
-
-  /* desktop floating catalog */
   const [isProductCatalogOpen, setIsProductCatalogOpen] = useState(false);
-
   const router = useRouter();
 
   const navItems = [
@@ -123,55 +32,55 @@ const Header: React.FC = () => {
     "Contacts",
   ];
 
-  /* ---------- NAVIGATION HANDLER ---------- */
-  const handleNavItemClick = (item: string) => {
-    if (item === "Products") {
-      setIsProductCatalogOpen((prev) => !prev);
-      setActiveItem(item);
-      return;
-    }
-    
+  // Updated navigation handler with routing
+  // 🟢 new version
+const handleNavItemClick = (item: string) => {
+  // ► clicking “Products” just toggles the catalogue
+  if (item === "Products") {
+    setIsProductCatalogOpen(prev => !prev);   // open / close
     setActiveItem(item);
-    setIsProductCatalogOpen(false);
-    setIsMobileMenuOpen(false);
-    setIsMobileProductOpen(false);
-    setExpandedMobileCategory(null);
+    return;                                   // stop here – no routing
+  }
 
-    switch (item) {
-      case "Home":
-        router.push("/");
-        break;
-      case "About":
-        router.push("/about");
-        break;
-      case "Services":
-        router.push("/services");
-        break;
-      case "Store Locator":
-        router.push("/store-locator");
-        break;
-      case "Dealers":
-        router.push("/dealers");
-        break;
-      case "Blog":
-        router.push("/blog");
-        break;
-      case "Careers":
-        router.push("/careers");
-        break;
-      case "Contacts":
-        router.push("/contacts");
-        break;
-      default:
-        router.push(`/${item.toLowerCase().replace(/ /g, "-")}`);
-        break;
-    }
-  };
+  // ► all other nav items keep their old behaviour
+  setActiveItem(item);
+  setIsProductCatalogOpen(false);             // ensure catalogue is closed
+  setIsMobileMenuOpen(false);
 
-  /* ---------- JSX ---------- */
+  switch (item) {
+    case "Home":
+      router.push("/");
+      break;
+    case "About":
+      router.push("/about");
+      break;
+    case "Services":
+      router.push("/services");
+      break;
+    case "Store Locator":
+      router.push("/store-locator");
+      break;
+    case "Dealers":
+      router.push("/dealers");
+      break;
+    case "Blog":
+      router.push("/blog");
+      break;
+    case "Careers":
+      router.push("/careers");
+      break;
+    case "Contacts":
+      router.push("/contacts");
+      break;
+    default:
+      break;
+  }
+};
+
+
   return (
     <>
-      {/* HEADER */}
+      {/* Header with shadow */}
       <header className="bg-white px-3 sm:px-4 lg:px-6 py-3 shadow-md relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Main Header Row */}
@@ -267,85 +176,26 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* MOBILE SIDE MENU */}
+      {/* Mobile/Tablet Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md px-4 pb-4 relative z-20">
+        <div className="lg:hidden bg-white px-3 sm:px-4 pb-3 shadow-md relative z-20">
           <div className="max-w-7xl mx-auto">
             <div className="border-t border-gray-200 pt-3">
               <div className="flex flex-col space-y-1">
-                {navItems.map((item) =>
-                  item === "Products" ? (
-                    <React.Fragment key={item}>
-                      {/* TOP-LEVEL PRODUCTS BUTTON */}
-                      <button
-                        onClick={() => setIsMobileProductOpen((prev) => !prev)}
-                        className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between transition-colors duration-200
-                          ${isMobileProductOpen ? "text-red-600 bg-red-50 font-semibold" : "text-gray-700 hover:text-red-600 hover:bg-gray-50"}`}
-                      >
-                        <span>{item}</span>
-                        {isMobileProductOpen ? <FaChevronDown /> : <FaChevronRight />}
-                      </button>
-
-                      {/* CATEGORY LIST */}
-                      {isMobileProductOpen && (
-                        <div className="mt-1 space-y-1">
-                          {categories.map((cat) => (
-                            <div key={cat.id}>
-                              {/* CATEGORY ROW */}
-                              <button
-                                onClick={() =>
-                                  setExpandedMobileCategory(
-                                    expandedMobileCategory === cat.id ? null : cat.id
-                                  )
-                                }
-                                className="w-full text-left pl-8 pr-4 py-2 rounded-lg flex items-center justify-between text-sm transition-colors duration-200 bg-gray-50 hover:bg-gray-100"
-                              >
-                                <span>{cat.name}</span>
-                                {expandedMobileCategory === cat.id ? <FaChevronDown /> : <FaChevronRight />}
-                              </button>
-
-                              {/* PRODUCT LIST */}
-                              {expandedMobileCategory === cat.id && (
-                                <div className="pl-12 pr-4 py-1 space-y-1">
-                                  {cat.products.map((p) => (
-                                    <button
-                                      key={p.name}
-                                      onClick={() => {
-                                        router.push(p.url);
-                                        setIsMobileMenuOpen(false);
-                                        setIsMobileProductOpen(false);
-                                        setExpandedMobileCategory(null);
-                                      }}
-                                      className="block w-full text-left text-xs py-1.5 text-gray-700 hover:text-red-600 transition-colors duration-200"
-                                    >
-                                      {p.name}
-                                    </button>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </React.Fragment>
-                  ) : (
-                    <button
-                      key={item}
-                      onClick={() => {
-                        handleNavItemClick(item);
-                        setIsMobileProductOpen(false);
-                        setExpandedMobileCategory(null);
-                      }}
-                      className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
-                        activeItem === item
-                          ? "text-red-600 bg-red-50 font-semibold"
-                          : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
-                      }`}
-                    >
-                      {item}
-                    </button>
-                  )
-                )}
+                {/* Navigation Items */}
+                {navItems.map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => handleNavItemClick(item)}
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
+                      activeItem === item
+                        ? "text-red-600 bg-red-50 font-semibold"
+                        : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -417,6 +267,8 @@ const Header: React.FC = () => {
               className="bg-white rounded-2xl shadow-2xl max-w-7xl w-full transform transition-all duration-300 scale-100 animate-fade-in-up"
               onMouseLeave={(e) => e.stopPropagation()} // Prevent closing when inside catalog
             >
+              {/* Header */}
+              
               {/* Product Catalog Content */}
               <div className="rounded-b-2xl overflow-hidden">
                 <ProductCatalog onClose={() => setIsProductCatalogOpen(false)} />

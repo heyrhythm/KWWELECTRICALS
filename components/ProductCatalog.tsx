@@ -106,7 +106,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
   if (!mounted) {
     return (
       <div 
-        className="max-w-4xl h-screen shadow-2xl overflow-hidden flex"
+        className=" max-w-4xl h-screen shadow-2xl overflow-hidden flex"
         onMouseLeave={onClose}
       >
         {/* Loading Categories */}
@@ -136,7 +136,7 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onClose }) => {
 
   return (
     <div 
-      className="max-w-7xl h-screen shadow-2xl overflow-hidden flex"
+      className=" max-w-7xl h-screen shadow-2xl overflow-hidden flex"
       onMouseLeave={onClose}
     >
       {/* Left Side - Categories Strip */}
