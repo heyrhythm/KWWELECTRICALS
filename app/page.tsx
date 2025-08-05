@@ -20,7 +20,7 @@ import DealerLocator from '@/components/dealer-locator';
 import NoStoreBanner from '@/components/NoStoreBanner';
 import SocialMediaSection from '@/components/SocialMediaSection';
 import KWWElectricalsCareerPage from '@/components/KWWElectricalsCareerPage';
-import Career from '@/components/career/career';
+import Career from '@/components/career/Career';
 
 
 export default function Home() {
