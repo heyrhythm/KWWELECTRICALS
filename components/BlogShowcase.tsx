@@ -190,12 +190,12 @@ const BlogShowcase: React.FC = () => {
                   {/* image */}
                   <div className="relative h-48 w-full rounded-t-xl overflow-hidden">
                     <Image
-                      src={post.image}
+                      src='/assets/products/led-light.jpg'
                       alt={post.title}
                       fill
                       priority
                       sizes="100vw"
-                      className="object-cover"
+                      className="object-cover aspect-square"
                     />
                     <span className="absolute top-3 left-3 bg-emerald-50 text-emerald-600 text-xs font-semibold px-2.5 py-1 rounded-full">
                       {post.tag}
