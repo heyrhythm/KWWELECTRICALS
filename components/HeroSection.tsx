@@ -134,9 +134,7 @@ const renderDesc = (desc: string) =>
                    className="object-cover absolute inset-0 hidden sm:block"/>
             
             {/* overlay for text contrast */}
-            <div className="absolute inset-0
-  bg-gradient-to-r from-black/70 via-black/50 to-black/0
-  pointer-events-none -my-24 md:-my-0 md:h-4/4 top-0 "/>
+            <div />
 
             {/* content container */}
             <div className="relative z-10 max-w-7xl mx-auto h-full flex items-center px-3 sm:px-4 lg:px-6 pt-6 sm:pt-8 lg:pt-16 pb-6 sm:pb-8 lg:pb-16 ">

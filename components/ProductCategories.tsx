@@ -10,7 +10,7 @@ const ProductCategories = () => {
       description: "Energy-efficient LED bulbs, tubes and decorative lighting solutions",
       icon: <FaLightbulb className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-orange-500",
-      image: "/assets/products/led-light.jpg",
+      image: "/assets/products/gandu2.JPG",
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const ProductCategories = () => {
       description: "Energy-efficient LED bulbs, tubes and decorative lighting solutions",
       icon: <FaHome className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-purple-500",
-      image: "/assets/products/home-appliances.jpg",
+      image: "/assets/products/Appliances.JPG",
     },
     {
       id: 3,
@@ -26,7 +26,7 @@ const ProductCategories = () => {
       description: "BLDC ceiling fans, table fans and exhaust fans for every need",
       icon: <FaFan className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-green-500",
-      image: "/assets/products/electric-fans.jpg",
+      image: "/assets/products/Fan Category Blog 1.JPG",
     },
     {
       id: 4,
@@ -34,12 +34,12 @@ const ProductCategories = () => {
       description: "Energy-efficient air coolers for home and industrial cooling needs",
       icon: <FaSnowflake className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-blue-500",
-      image: "/assets/products/air-cooler.jpg",
+      image: "/assets/products/Cooler.png",
     }
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white from-50% to-red-600 to-50% h-200 sm:h-190 lg:h-200 overflow-hidden">
+    <section className="bg-gradient-to-b from-white from-50% to-red-600 to-50% h-200 sm:h-190 lg:h-auto overflow-hidden">
       <div className="w-full">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-9 sm:pt-12 lg:pt-16 scale-80 md:scale-100 origin-top">
           {/* Header */}
@@ -59,7 +59,7 @@ const ProductCategories = () => {
                 key={category.id}
                 className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
               >
-                <div className="relative aspect-square sm:aspect-square lg:aspect-square overflow-hidden">
+                <div className="relative aspect-square sm:aspect-square lg:aspect-3/4 overflow-hidden">
                   <Image
                     src={category.image}
                     alt={category.title}
@@ -92,7 +92,7 @@ const ProductCategories = () => {
 
           {/* View All Products Button */}
           <div className="text-center">
-            <button className="bg-white text-red-600 px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-red-800 hover:text-white transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer">
+            <button className="bg-white text-red-600 px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-lg mb-8 mt-4 font-bold text-base sm:text-lg hover:bg-red-800 hover:text-white transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer">
               View All Products
             </button>
           </div>

@@ -569,13 +569,13 @@ const MustPickProducts = () => {
           
           {/* TODO : Have to fix this part later*/}
           {/* Row 2 - Last 4 products */}
-          {/* <SlideRow 
+          <SlideRow 
             products={row2Products} 
             currentIndex={row2Index} 
             rowId="row2"
             onPrevious={() => goToPrevious('row2')}
             onNext={() => goToNext('row2')}
-          /> */}
+          />
         </div>
       </div>
     </div>

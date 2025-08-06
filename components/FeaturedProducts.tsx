@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
     {
       id: 1,
       name: "LED Smart Bulb 12W",
-      image: "/assets/products/led-light.jpg",
+      image: "/assets/products/gandu2.jpg",
       badge: {
         text: "Best Seller",
         color: "text-white",
@@ -42,7 +42,7 @@ const FeaturedProducts = () => {
     {
       id: 2,
       name: "LED Smart Bulb 12W",
-      image: "/assets/products/led-light.jpg",
+      image: "/assets/products/gandu2.jpg",
       badge: {
         text: "New Launch",
         color: "text-white",
@@ -56,7 +56,7 @@ const FeaturedProducts = () => {
     {
       id: 3,
       name: "LED Smart Bulb 12W",
-      image: "/assets/products/led-light.jpg",
+      image: "/assets/products/gandu2.jpg",
       badge: {
         text: "Eco Choice",
         color: "text-white",
@@ -70,7 +70,7 @@ const FeaturedProducts = () => {
     {
       id: 4,
       name: "LED Smart Bulb 12W",
-      image: "/assets/products/led-light.jpg",
+      image: "/assets/products/gandu2.jpg",
       badge: {
         text: "Popular",
         color: "text-white",
@@ -80,7 +80,63 @@ const FeaturedProducts = () => {
       price: 299,
       originalPrice: 499,
       link: "#"
-    }
+    },
+    {
+      id: 5,
+      name: "LED Smart Bulb 12W",
+      image: "/assets/products/gandu2.jpg",
+      badge: {
+        text: "Popular",
+        color: "text-white",
+        bgColor: "bg-blue-600"
+      },
+      features: ["Smart Control", "Energy Efficient", "Save Energy"],
+      price: 299,
+      originalPrice: 499,
+      link: "#"
+    },
+    {
+      id: 6,
+      name: "LED Smart Bulb 12W",
+      image: "/assets/products/gandu2.jpg",
+      badge: {
+        text: "Popular",
+        color: "text-white",
+        bgColor: "bg-blue-600"
+      },
+      features: ["Smart Control", "Energy Efficient", "Save Energy"],
+      price: 299,
+      originalPrice: 499,
+      link: "#"
+    },
+    {
+      id: 7,
+      name: "LED Smart Bulb 12W",
+      image: "/assets/products/gandu2.jpg",
+      badge: {
+        text: "Popular",
+        color: "text-white",
+        bgColor: "bg-blue-600"
+      },
+      features: ["Smart Control", "Energy Efficient", "Save Energy"],
+      price: 299,
+      originalPrice: 499,
+      link: "#"
+    },
+    {
+      id: 8,
+      name: "LED Smart Bulb 12W",
+      image: "/assets/products/gandu2.jpg",
+      badge: {
+        text: "Popular",
+        color: "text-white",
+        bgColor: "bg-blue-600"
+      },
+      features: ["Smart Control", "Energy Efficient", "Save Energy"],
+      price: 299,
+      originalPrice: 499,
+      link: "#"
+    },
   ];
 
   // Auto scroll functionality
@@ -90,7 +146,7 @@ const FeaturedProducts = () => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         const nextIndex = (prevIndex + 1) % products.length;
-        
+
         // Scroll to the next product (mobile only)
         if (scrollContainerRef.current && window.innerWidth < 1024) {
           const container = scrollContainerRef.current;
@@ -100,7 +156,7 @@ const FeaturedProducts = () => {
             behavior: 'smooth'
           });
         }
-        
+
         return nextIndex;
       });
     }, 3000); // Auto scroll every 3 seconds
@@ -138,14 +194,14 @@ const FeaturedProducts = () => {
 
         {/* Mobile: Horizontal Scrolling Container */}
         <div className="lg:hidden mt-10">
-          <div 
+          <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto scrollbar-hide gap-4 px-4 pb-4 snap-x snap-mandatory"
             onScroll={handleScroll}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            style={{ 
-              scrollbarWidth: 'none', 
+            style={{
+              scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               // WebkitScrollbar: { display: 'none' }
             }}
@@ -171,10 +227,7 @@ const FeaturedProducts = () => {
                       sizes="128px"
                     />
                   </div>
-                  {/* Decorative Elements */}
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-white bg-opacity-20 rounded-full"></div>
-                  <div className="absolute bottom-4 left-4 w-6 h-6 bg-white bg-opacity-10 rounded-full"></div>
-                  <div className="absolute top-1/2 right-8 w-4 h-4 bg-white bg-opacity-15 rounded-full"></div>
+
                 </div>
 
                 {/* Product Info */}
@@ -182,7 +235,7 @@ const FeaturedProducts = () => {
                   <h3 className="font-bold text-lg mb-3">
                     {product.name}
                   </h3>
-                  
+
                   {/* Features */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {product.features.map((feature, index) => (
@@ -246,11 +299,10 @@ const FeaturedProducts = () => {
                     });
                   }
                 }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-blue-600 w-6' 
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-blue-600 w-6'
                     : 'bg-gray-300 hover:bg-gray-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -258,46 +310,42 @@ const FeaturedProducts = () => {
 
         {/* Desktop: Grid Layout (unchanged) */}
         <div className="hidden lg:block">
-          <div className="grid grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               <div
-                key={product.id}  
-                className="bg-gray-200 rounded-2xl p-6 relative overflow-hidden group hover:transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                key={product.id}
+                className="bg-gradient-to-b from-black via-transparent to-white rounded-2xl p-4 relative overflow-hidden group transform transition duration-300 hover:scale-[1.03] shadow-md hover:shadow-xl"
               >
                 {/* Badge */}
-                <div className={`absolute top-4 left-4 ${product.badge.bgColor} ${product.badge.color} px-3 py-1 rounded-full text-xs font-semibold z-10`}>
+                <div
+                  className={`absolute top-2 left-2 bg-black text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md z-10 ${product.badge.bgColor} ${product.badge.color}`}
+                >
                   {product.badge.text}
                 </div>
 
                 {/* Product Image */}
-                <div className="relative h-52 mb-4 flex items-center justify-center">
-                  <div className="relative w-36 h-36">
+                <div className="relative h-48 w-full mb-4 flex items-center justify-center">
+                  <div className="relative w-full h-full">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-contain"
-                      sizes="144px"
+                      className="rounded-t-2xl"
+                      sizes="(min-width: 1024px) 176px, 100vw"
                     />
                   </div>
-                  {/* Decorative Elements */}
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-white bg-opacity-20 rounded-full"></div>
-                  <div className="absolute bottom-4 left-4 w-6 h-6 bg-white bg-opacity-10 rounded-full"></div>
-                  <div className="absolute top-1/2 right-8 w-4 h-4 bg-white bg-opacity-15 rounded-full"></div>
                 </div>
 
                 {/* Product Info */}
-                <div className="text-gray-700 mb-4">
-                  <h3 className="font-bold text-xl mb-3">
-                    {product.name}
-                  </h3>
-                  
+                <div className="text-gray-800">
+                  <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+
                   {/* Features */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-3">
                     {product.features.map((feature, index) => (
                       <span
                         key={index}
-                        className="text-xs text-gray-300 bg-gray-600 px-2 py-1 rounded"
+                        className="text-xs bg-gray-600 text-gray-200 px-2 py-0.5 rounded"
                       >
                         {feature}
                       </span>
@@ -305,24 +353,20 @@ const FeaturedProducts = () => {
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-center space-x-2 mb-4">
-                    <span className="text-2xl font-bold text-gray-800">
-                      ₹{product.price}
-                    </span>
-                    <span className="text-sm text-gray-400 line-through">
-                      ₹{product.originalPrice}
-                    </span>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-xl font-bold text-gray-900">₹{product.price}</span>
+                    <span className="text-sm text-gray-400 line-through">₹{product.originalPrice}</span>
                   </div>
                 </div>
 
                 {/* CTA Button */}
                 <Link
                   href={product.link}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center group"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg flex items-center justify-center transition-all duration-300 group"
                 >
                   View Products
                   <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -339,6 +383,12 @@ const FeaturedProducts = () => {
             ))}
           </div>
         </div>
+        <div className="text-center mt-8">
+          <button className="bg-black text-white font-semibold px-8 py-4 mt-8 rounded-lg">
+            View All Products
+          </button>
+        </div>
+
       </div>
 
       {/* Add custom CSS to hide scrollbar */}
