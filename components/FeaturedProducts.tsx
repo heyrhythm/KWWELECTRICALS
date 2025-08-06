@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
     {
       id: 1,
       name: "LED Smart Bulb 12W",
-      image: "/api/placeholder/200/200",
+      image: "/assets/products/led-light.jpg",
       badge: {
         text: "Best Seller",
         color: "text-white",
@@ -42,7 +42,7 @@ const FeaturedProducts = () => {
     {
       id: 2,
       name: "LED Smart Bulb 12W",
-      image: "/api/placeholder/200/200",
+      image: "/assets/products/led-light.jpg",
       badge: {
         text: "New Launch",
         color: "text-white",
@@ -56,7 +56,7 @@ const FeaturedProducts = () => {
     {
       id: 3,
       name: "LED Smart Bulb 12W",
-      image: "/api/placeholder/200/200",
+      image: "/assets/products/led-light.jpg",
       badge: {
         text: "Eco Choice",
         color: "text-white",
@@ -70,7 +70,7 @@ const FeaturedProducts = () => {
     {
       id: 4,
       name: "LED Smart Bulb 12W",
-      image: "/api/placeholder/200/200",
+      image: "/assets/products/led-light.jpg",
       badge: {
         text: "Popular",
         color: "text-white",
@@ -167,7 +167,7 @@ const FeaturedProducts = () => {
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-contain"
+                      className="aspect-4/3 group-hover:scale-105 transition-transform duration-300"
                       sizes="128px"
                     />
                   </div>
