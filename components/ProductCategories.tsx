@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { FaLightbulb, FaHome, FaFan, FaSnowflake, FaArrowRight } from 'react-icons/fa';
 
+
 const ProductCategories = () => {
   const categories = [
     {
@@ -9,7 +10,7 @@ const ProductCategories = () => {
       description: "Energy-efficient LED bulbs, tubes and decorative lighting solutions",
       icon: <FaLightbulb className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-orange-500",
-      image: "/images/led-lights.jpg",
+      image: "/assets/products/led-light.jpg",
     },
     {
       id: 2,
@@ -17,7 +18,7 @@ const ProductCategories = () => {
       description: "Energy-efficient LED bulbs, tubes and decorative lighting solutions",
       icon: <FaHome className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-purple-500",
-      image: "/images/home-appliances.jpg",
+      image: "/assets/products/home-appliances.jpg",
     },
     {
       id: 3,
@@ -25,7 +26,7 @@ const ProductCategories = () => {
       description: "BLDC ceiling fans, table fans and exhaust fans for every need",
       icon: <FaFan className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-green-500",
-      image: "/images/electric-fans.jpg",
+      image: "/assets/products/electric-fans.jpg",
     },
     {
       id: 4,
@@ -33,7 +34,7 @@ const ProductCategories = () => {
       description: "Energy-efficient air coolers for home and industrial cooling needs",
       icon: <FaSnowflake className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-blue-500",
-      image: "/images/air-coolers.jpg",
+      image: "/assets/products/air-cooler.jpg",
     }
   ];
 
@@ -58,7 +59,7 @@ const ProductCategories = () => {
                 key={category.id}
                 className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
               >
-                <div className="relative h-36 sm:h-40 lg:h-48 overflow-hidden">
+                <div className="relative aspect-square sm:aspect-square lg:aspect-square overflow-hidden">
                   <Image
                     src={category.image}
                     alt={category.title}
@@ -67,6 +68,7 @@ const ProductCategories = () => {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 </div>
+
                 <div className="p-4 sm:p-5 lg:p-6">
                   <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                     <div className={`${category.iconBg} rounded-lg p-1.5 sm:p-2`}>
