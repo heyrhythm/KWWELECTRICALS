@@ -23,9 +23,9 @@ const MustPickProducts = () => {
     {
       id: 1,
       images: [
-        { id: 1, src: '/api/placeholder/200/200', alt: 'White ceiling fan', color: 'White', backgroundColor: '#ffffff' },
-        { id: 2, src: '/api/placeholder/200/200', alt: 'Brown ceiling fan', color: 'Brown', backgroundColor: '#f5f5dc' },
-        { id: 3, src: '/api/placeholder/200/200', alt: 'Black ceiling fan', color: 'Black', backgroundColor: '#2d3748' }
+        { id: 1, src: '/assets/products/havells-ceiling-fan-brown.jpg', alt: 'White ceiling fan', color: 'White', backgroundColor: '#ffffff' },
+        { id: 2, src: '/assets/products/havells-ceiling-fan-brown.jpg', alt: 'Brown ceiling fan', color: 'Brown', backgroundColor: '#f5f5dc' },
+        { id: 3, src: '/assets/products/havells-ceilling-fan-black.webp', alt: 'Black ceiling fan', color: 'Black', backgroundColor: '#2d3748' }
       ],
       companyName: 'HAVELLS',
       productType: 'ceiling fan',
@@ -34,9 +34,9 @@ const MustPickProducts = () => {
     {
       id: 2,
       images: [
-        { id: 1, src: '/api/placeholder/200/200', alt: 'Blue table fan', color: 'Blue', backgroundColor: '#dbeafe' },
-        { id: 2, src: '/api/placeholder/200/200', alt: 'White table fan', color: 'White', backgroundColor: '#ffffff' },
-        { id: 3, src: '/api/placeholder/200/200', alt: 'Red table fan', color: 'Red', backgroundColor: '#fee2e2' }
+        { id: 1, src: '/assets/products/orient-table-fan-blue.webp', alt: 'Blue table fan', color: 'Blue', backgroundColor: '#dbeafe' },
+        { id: 2, src: '/assets/products/orient-table-fan.jpg', alt: 'White table fan', color: 'White', backgroundColor: '#ffffff' },
+        { id: 3, src: '/assets/products/orient-table-fan-red.webp', alt: 'Red table fan', color: 'Red', backgroundColor: '#fee2e2' }
       ],
       companyName: 'ORIENT',
       productType: 'table fan',
@@ -45,9 +45,9 @@ const MustPickProducts = () => {
     {
       id: 3,
       images: [
-        { id: 1, src: '/api/placeholder/200/200', alt: 'Warm white LED bulb', color: 'Warm White', backgroundColor: '#fef7cd' },
-        { id: 2, src: '/api/placeholder/200/200', alt: 'Cool white LED bulb', color: 'Cool White', backgroundColor: '#f0f9ff' },
-        { id: 3, src: '/api/placeholder/200/200', alt: 'RGB LED bulb', color: 'RGB', backgroundColor: '#e0e7ff' }
+        { id: 1, src: '/assets/products/phillips-led-bulb-warm.webp', alt: 'Warm white LED bulb', color: 'Warm White', backgroundColor: '#fef7cd' },
+        { id: 2, src: '/assets/products/phillips-led-bulb-cool.webp', alt: 'Cool white LED bulb', color: 'Cool White', backgroundColor: '#f0f9ff' },
+        { id: 3, src: '/assets/products/phillips-led-bulb-rgb.webp', alt: 'RGB LED bulb', color: 'RGB', backgroundColor: '#e0e7ff' }
       ],
       companyName: 'PHILIPS',
       productType: 'LED bulb',
@@ -56,9 +56,9 @@ const MustPickProducts = () => {
     {
       id: 4,
       images: [
-        { id: 1, src: '/api/placeholder/200/200', alt: 'Square panel light', color: 'Square', backgroundColor: '#f8fafc' },
-        { id: 2, src: '/api/placeholder/200/200', alt: 'Round panel light', color: 'Round', backgroundColor: '#f1f5f9' },
-        { id: 3, src: '/api/placeholder/200/200', alt: 'Rectangular panel light', color: 'Rectangle', backgroundColor: '#f8fafc' }
+        { id: 1, src: '/assets/products/syska-panel-light-square.jpg', alt: 'Square panel light', color: 'Square', backgroundColor: '#f8fafc' },
+        { id: 2, src: '/assets/products/syska-led-panel-light-round.webp', alt: 'Round panel light', color: 'Round', backgroundColor: '#f1f5f9' },
+        { id: 3, src: '/assets/products/syska-panel-light-rectangle.jpg', alt: 'Rectangular panel light', color: 'Rectangle', backgroundColor: '#f8fafc' }
       ],
       companyName: 'SYSKA',
       productType: 'panel light',
@@ -67,9 +67,9 @@ const MustPickProducts = () => {
     {
       id: 5,
       images: [
-        { id: 1, src: '/api/placeholder/200/200', alt: 'Desert cooler', color: 'Beige', backgroundColor: '#fef3c7' },
-        { id: 2, src: '/api/placeholder/200/200', alt: 'Personal cooler', color: 'White', backgroundColor: '#ffffff' },
-        { id: 3, src: '/api/placeholder/200/200', alt: 'Tower cooler', color: 'Grey', backgroundColor: '#f3f4f6' }
+        { id: 1, src: '/assets/products/air-cooler.jpg', alt: 'Desert cooler', color: 'Beige', backgroundColor: '#fef3c7' },
+        { id: 2, src: '/assets/products/Bajaj-cooler-1.webp', alt: 'Personal cooler', color: 'White', backgroundColor: '#ffffff' },
+        { id: 3, src: '/assets/products/Bajaj-cooler-2.jpg', alt: 'Tower cooler', color: 'Grey', backgroundColor: '#f3f4f6' }
       ],
       companyName: 'BAJAJ',
       productType: 'cooler',
@@ -567,14 +567,15 @@ const MustPickProducts = () => {
             onNext={() => goToNext('row1')}
           />
           
+          {/* TODO : Have to fix this part later*/}
           {/* Row 2 - Last 4 products */}
-          <SlideRow 
+          {/* <SlideRow 
             products={row2Products} 
             currentIndex={row2Index} 
             rowId="row2"
             onPrevious={() => goToPrevious('row2')}
             onNext={() => goToNext('row2')}
-          />
+          /> */}
         </div>
       </div>
     </div>
