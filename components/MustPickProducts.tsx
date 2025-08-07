@@ -511,7 +511,7 @@ const MustPickProducts = () => {
     const currentAnimating = isDesktop ? isAnimating[rowId] : false;
 
     return (
-      <div className="pt-14 mb-8 sm:mb-10 lg:mb-12">
+      <div className=" mb-8 sm:mb-10 lg:mb-12">
         {/* Updated container with proper relative positioning and min-height */}
         <div className={`relative ${isDesktop ? 'flex justify-center items-center px-2 sm:px-4 md:px-6 lg:px-8 overflow-visible' : 'px-4 sm:px-6 lg:px-8'} min-h-[400px]`}>
           {/* Left Arrow */}
@@ -588,7 +588,7 @@ const MustPickProducts = () => {
         </div>
 
         {/* Slide indicators with fixed event handling */}
-        <div className="flex justify-center mt-4 sm:mt-6 space-x-1 sm:space-x-2">
+        {/* <div className="flex justify-center mt-4 sm:mt-6 space-x-1 sm:space-x-2">
           {products.map((_, index) => (
             <button
               key={`${rowId}-indicator-${index}`} // Stable key for indicators
@@ -628,7 +628,7 @@ const MustPickProducts = () => {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Swipe progress indicator - Desktop only */}
         {isDesktop && Math.abs(currentOffset) > 20 && (
@@ -680,7 +680,7 @@ const MustPickProducts = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#e0cccc]  md:py-8">
+    <div className="min-h-screen bg-[#e0cccc]  md:py-8 md:pb-16">
       <div className={`${isDesktop ? 'scale-90 md:scale-100 max-w-7xl' : 'scale-90 md:scale-100'} container mx-auto px-2 sm:px-4 lg:px-6`}>
         {/* Responsive Header */}
         <div className="w-full py-2 sm:py-8 lg:py-12 px-2 sm:px-4">
