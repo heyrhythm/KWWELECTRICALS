@@ -8,7 +8,7 @@ interface PromoComponentProps {
 
 const PromoComponent: React.FC<PromoComponentProps> = ({ className = '' }) => {
   return (
-    <div className={`scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
+    <div className={`-mt-14 md:-mt-0 scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
       {/* Main Banner */}
       <div className=" bg-gradient-to-r from-orange-600 to-red-500 rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8 text-white relative overflow-hidden">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-8">

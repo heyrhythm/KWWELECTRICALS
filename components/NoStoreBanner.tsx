@@ -12,7 +12,7 @@ const NoStoreBanner: React.FC<NoStoreBannerProps> = ({
   onContact,
 }) => {
   return (
-    <section className="mx-auto max-w-full sm:max-w-3xl lg:max-w-6xl px-4 sm:px-6 py-10 sm:py-12 lg:py-16">
+    <section className="-mt-44 md:-mt-0  mx-auto max-w-full sm:max-w-3xl lg:max-w-6xl px-4 sm:px-6 py-10 sm:py-12 lg:py-16">
       <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-r from-indigo-600 to-fuchsia-600 text-center text-white py-10 sm:py-12 lg:py-14 px-6 shadow-lg">
         {/* Heading */}
         <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-3 sm:mb-4">

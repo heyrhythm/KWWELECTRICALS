@@ -269,7 +269,7 @@ const Header: React.FC = () => {
 
       {/* MOBILE SIDE MENU */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md px-4 pb-4 relative z-20">
+        <div className="lg:hidden bg-white shadow-md px-4 pb-4 relative z-20 ">
           <div className="max-w-7xl mx-auto">
             <div className="border-t border-gray-200 pt-3">
               <div className="flex flex-col space-y-1">
@@ -277,7 +277,7 @@ const Header: React.FC = () => {
                   item === "Products" ? (
                     <React.Fragment key={item}>
                       {/* TOP-LEVEL PRODUCTS BUTTON */}
-                      <button
+                      <button 
                         onClick={() => setIsMobileProductOpen((prev) => !prev)}
                         className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between transition-colors duration-200
                           ${isMobileProductOpen ? "text-red-600 bg-red-50 font-semibold" : "text-gray-700 hover:text-red-600 hover:bg-gray-50"}`}
@@ -306,7 +306,7 @@ const Header: React.FC = () => {
 
                               {/* PRODUCT LIST */}
                               {expandedMobileCategory === cat.id && (
-                                <div className="pl-12 pr-4 py-1 space-y-1">
+                                <div className="pl-12 pr-4 py-1 space-y-1 ">
                                   {cat.products.map((p) => (
                                     <button
                                       key={p.name}

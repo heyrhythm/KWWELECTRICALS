@@ -163,12 +163,12 @@ export default function DealerLocator() {
 
   /* ------------------------------------------------------------------ */
   return (
-    <div className='scale-90 md:scale-100 -mt-10 md:-mt-0 md:py-10'>
+    <div className='scale-90 md:scale-100 md:py-10'>
       <Head>
         <title>Dealer Locator | KWW Electricals</title>
       </Head>
 
-      <main className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-gray-50 -mt-40 md:-mt-0   md:py-10 px-4 sm:px-6 lg:px-8">
         {/* ────────── HEADER ────────── */}
         <div className="max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto mb-8 sm:mb-10 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900">

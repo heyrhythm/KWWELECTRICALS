@@ -39,7 +39,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ className = '' 
   };
 
   return (
-    <div className={`px-3 sm:px-4 lg:px-8 ${className}`}>
+    <div className={`pb-10 md:pb-25 px-3 sm:px-4 lg:px-8 ${className}`}>
       <div className="w-full max-w-5xl mx-auto bg-blue-50 rounded-lg sm:rounded-xl py-6 sm:py-10 md:py-12 lg:py-16 px-3 sm:px-6 md:px-8 lg:px-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

@@ -149,7 +149,7 @@ const CustomerTestimonials: React.FC<CustomerTestimonialsProps> = ({ className =
 
   return (
     <div
-      className={`scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`-mt-14 md:mt-24  scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8 ${className}`}
     >
       {/* ---------- Header ---------- */}
       <div className="text-center mb-10 sm:mb-12">

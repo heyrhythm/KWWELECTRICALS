@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import MustPickCard from './MustPickCard';
 
 interface ProductData {
@@ -18,7 +18,7 @@ interface ProductData {
 }
 
 const MustPickProducts = () => {
-  // Product data
+  // Product data with your actual image paths
   const allProducts: ProductData[] = [
     {
       id: 1,
@@ -107,12 +107,100 @@ const MustPickProducts = () => {
       companyName: 'MORPHY',
       productType: 'iron',
       highlightColor: 'rose-600'
+    },
+    {
+      id: 9,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Air fryer black', color: 'Black', backgroundColor: '#1f2937' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Air fryer white', color: 'White', backgroundColor: '#ffffff' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Air fryer steel', color: 'Steel', backgroundColor: '#e2e8f0' }
+      ],
+      companyName: 'KENT',
+      productType: 'air fryer',
+      highlightColor: 'red-600'
+    },
+    {
+      id: 10,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Water purifier', color: 'White', backgroundColor: '#ffffff' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'RO purifier', color: 'Blue', backgroundColor: '#dbeafe' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'UV purifier', color: 'Grey', backgroundColor: '#f3f4f6' }
+      ],
+      companyName: 'AQUAGUARD',
+      productType: 'water purifier',
+      highlightColor: 'teal-600'
+    },
+    {
+      id: 11,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Microwave oven', color: 'Black', backgroundColor: '#1f2937' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Convection oven', color: 'Silver', backgroundColor: '#f8fafc' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Solo microwave', color: 'White', backgroundColor: '#ffffff' }
+      ],
+      companyName: 'LG',
+      productType: 'microwave',
+      highlightColor: 'pink-600'
+    },
+    {
+      id: 12,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Vacuum cleaner', color: 'Red', backgroundColor: '#fee2e2' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Cordless vacuum', color: 'Blue', backgroundColor: '#dbeafe' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Robot vacuum', color: 'Black', backgroundColor: '#1f2937' }
+      ],
+      companyName: 'EUREKA',
+      productType: 'vacuum cleaner',
+      highlightColor: 'emerald-600'
+    },
+    {
+      id: 13,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Electric kettle', color: 'Steel', backgroundColor: '#e2e8f0' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Glass kettle', color: 'Clear', backgroundColor: '#f0f9ff' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Ceramic kettle', color: 'White', backgroundColor: '#ffffff' }
+      ],
+      companyName: 'PRESTIGE',
+      productType: 'electric kettle',
+      highlightColor: 'amber-600'
+    },
+    {
+      id: 14,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Food processor', color: 'White', backgroundColor: '#ffffff' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Mini processor', color: 'Red', backgroundColor: '#fee2e2' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Multi processor', color: 'Black', backgroundColor: '#1f2937' }
+      ],
+      companyName: 'PHILIPS',
+      productType: 'food processor',
+      highlightColor: 'lime-600'
+    },
+    {
+      id: 15,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Hair dryer', color: 'Pink', backgroundColor: '#fce7f3' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Professional dryer', color: 'Black', backgroundColor: '#1f2937' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Compact dryer', color: 'White', backgroundColor: '#ffffff' }
+      ],
+      companyName: 'DYSON',
+      productType: 'hair dryer',
+      highlightColor: 'fuchsia-600'
+    },
+    {
+      id: 16,
+      images: [
+        { id: 1, src: '/api/placeholder/200/200', alt: 'Smart speaker', color: 'Black', backgroundColor: '#1f2937' },
+        { id: 2, src: '/api/placeholder/200/200', alt: 'Mini speaker', color: 'White', backgroundColor: '#ffffff' },
+        { id: 3, src: '/api/placeholder/200/200', alt: 'Portable speaker', color: 'Blue', backgroundColor: '#dbeafe' }
+      ],
+      companyName: 'AMAZON',
+      productType: 'smart speaker',
+      highlightColor: 'sky-600'
     }
   ];
 
-  // Split products into two rows
-  const row1Products = allProducts.slice(0, 4);
-  const row2Products = allProducts.slice(4, 8);
+  // Memoize split products to prevent unnecessary recalculations
+  const row1Products = useMemo(() => allProducts.slice(0, 8), []);
+  const row2Products = useMemo(() => allProducts.slice(8, 16), []);
 
   // State for current visible cards
   const [row1Index, setRow1Index] = useState(0);
@@ -130,7 +218,7 @@ const MustPickProducts = () => {
   const [isSwipeActive, setIsSwipeActive] = useState(false);
   const [isHorizontalSwipe, setIsHorizontalSwipe] = useState(false);
 
-  // Live swipe animation state (for desktop)
+  // Live swipe animation state (for desktop) - Isolated per row
   const [swipeOffset, setSwipeOffset] = useState({ row1: 0, row2: 0 });
   const [isAnimating, setIsAnimating] = useState({ row1: false, row2: false });
 
@@ -155,19 +243,19 @@ const MustPickProducts = () => {
   // Check if desktop (lg and above)
   const isDesktop = windowWidth >= 1024;
 
-  // Get visible products based on screen size
-  const getVisibleProducts = (products: ProductData[], currentIndex: number) => {
+  // Memoized function to get visible products - now shows 4 cards (3 full + 1 half)
+  const getVisibleProducts = useCallback((products: ProductData[], currentIndex: number) => {
     const visible = [];
-    const visibleCount = isDesktop ? 3 : 3; // Always prepare 3 cards
+    const visibleCount = 4; // Show 4 cards total (3 full + 1 half)
     for (let i = 0; i < visibleCount; i++) {
       const index = (currentIndex + i) % products.length;
       visible.push(products[index]);
     }
     return visible;
-  };
+  }, []);
 
-  // Navigation functions
-  const goToPrevious = (row: 'row1' | 'row2') => {
+  // Optimized navigation functions with useCallback
+  const goToPrevious = useCallback((row: 'row1' | 'row2') => {
     if (isDesktop) {
       setIsAnimating(prev => ({ ...prev, [row]: true }));
     }
@@ -183,9 +271,9 @@ const MustPickProducts = () => {
         setIsAnimating(prev => ({ ...prev, [row]: false }));
       }, 500);
     }
-  };
+  }, [isDesktop, row1Products.length, row2Products.length]);
 
-  const goToNext = (row: 'row1' | 'row2') => {
+  const goToNext = useCallback((row: 'row1' | 'row2') => {
     if (isDesktop) {
       setIsAnimating(prev => ({ ...prev, [row]: true }));
     }
@@ -201,10 +289,10 @@ const MustPickProducts = () => {
         setIsAnimating(prev => ({ ...prev, [row]: false }));
       }, 500);
     }
-  };
+  }, [isDesktop, row1Products.length, row2Products.length]);
 
   // Touch event handlers - Mobile optimized vs Desktop advanced
-  const handleTouchStart = (e: React.TouchEvent, row?: 'row1' | 'row2') => {
+  const handleTouchStart = useCallback((e: React.TouchEvent, row?: 'row1' | 'row2') => {
     if (isDesktop && row) {
       // Desktop: Advanced touch handling
       setIsSwipeActive(true);
@@ -224,9 +312,9 @@ const MustPickProducts = () => {
         y: e.targetTouches[0].clientY,
       });
     }
-  };
+  }, [isDesktop]);
 
-  const handleTouchMove = (e: React.TouchEvent, row?: 'row1' | 'row2') => {
+  const handleTouchMove = useCallback((e: React.TouchEvent, row?: 'row1' | 'row2') => {
     if (isDesktop && row) {
       // Desktop: Live swipe animation
       if (!isSwipeActive) return;
@@ -266,9 +354,9 @@ const MustPickProducts = () => {
         y: e.targetTouches[0].clientY,
       });
     }
-  };
+  }, [isDesktop, isSwipeActive, touchStart.x]);
 
-  const handleTouchEnd = (e: React.TouchEvent, row: 'row1' | 'row2') => {
+  const handleTouchEnd = useCallback((e: React.TouchEvent, row: 'row1' | 'row2') => {
     if (isDesktop) {
       // Desktop: Advanced touch end handling
       if (!touchStart.x || !isSwipeActive) {
@@ -320,10 +408,10 @@ const MustPickProducts = () => {
         }
       }
     }
-  };
+  }, [isDesktop, touchStart, touchEnd, isSwipeActive, isHorizontalSwipe, goToNext, goToPrevious]);
 
-  // Arrow Button Component - Responsive
-  const ArrowButton = ({ 
+  // Updated Arrow Button Component with proper event handling (fixes scroll issue)
+  const ArrowButton = React.memo(({ 
     direction, 
     onClick, 
     disabled = false 
@@ -333,10 +421,20 @@ const MustPickProducts = () => {
     disabled?: boolean;
   }) => (
     <button
-      onClick={onClick}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onClick();
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+      }}
+      onFocus={(e) => {
+        e.preventDefault();
+      }}
       disabled={disabled}
       className={`
-        absolute top-1/2 transform -translate-y-1/2 z-10
+        absolute top-1/2 transform -translate-y-1/2 z-20
         ${isDesktop 
           ? 'w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 shadow-2xl border-2 hover:scale-110 active:scale-95 backdrop-blur-sm bg-white/90' 
           : 'w-8 h-8 sm:w-10 sm:h-10 shadow-lg border'
@@ -346,11 +444,17 @@ const MustPickProducts = () => {
         hover:bg-gray-50 hover:shadow-xl
         disabled:opacity-50 disabled:cursor-not-allowed
         transition-all duration-300
+        focus:outline-none focus:ring-0
         ${direction === 'left' 
-          ? (isDesktop ? 'left-1 sm:left-2 md:left-0 lg:-left-2 xl:-left-4' : '-left-2 sm:-left-4 lg:-left-6')
-          : (isDesktop ? 'right-1 sm:right-2 md:right-0 lg:-right-2 xl:-right-4' : '-right-2 sm:-right-4 lg:-right-6')
+          ? (isDesktop ? 'left-6 sm:left-8 md:left-10 lg:left-12 xl:left-16' : 'left-0 sm:left-2 lg:left-4')
+          : (isDesktop ? 'right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16' : 'right-0 sm:right-2 lg:right-4')
         }
       `}
+      style={{ 
+        WebkitTapHighlightColor: 'transparent',
+        outline: 'none',
+        border: 'none'
+      }}
     >
       <svg 
         className={`
@@ -369,10 +473,10 @@ const MustPickProducts = () => {
         />
       </svg>
     </button>
-  );
+  ));
 
-  // Component for a single row
-  const SlideRow = ({ 
+  // Component for a single row - Memoized to prevent unnecessary re-renders
+  const SlideRow = React.memo(({ 
     products, 
     currentIndex, 
     rowId,
@@ -385,13 +489,14 @@ const MustPickProducts = () => {
     onPrevious: () => void,
     onNext: () => void
   }) => {
-    const visibleProducts = getVisibleProducts(products, currentIndex);
+    const visibleProducts = useMemo(() => getVisibleProducts(products, currentIndex), [products, currentIndex, getVisibleProducts]);
     const currentOffset = isDesktop ? swipeOffset[rowId] : 0;
     const currentAnimating = isDesktop ? isAnimating[rowId] : false;
 
     return (
       <div className="mb-8 sm:mb-10 lg:mb-12">
-        <div className={`relative ${isDesktop ? 'flex justify-center items-center px-2 sm:px-4 md:px-6 lg:px-8 overflow-visible' : 'px-4 sm:px-6 lg:px-8'}`}>
+        {/* Updated container with proper relative positioning and min-height */}
+        <div className={`relative ${isDesktop ? 'flex justify-center items-center px-2 sm:px-4 md:px-6 lg:px-8 overflow-visible' : 'px-4 sm:px-6 lg:px-8'} min-h-[400px]`}>
           {/* Left Arrow */}
           <ArrowButton direction="left" onClick={onPrevious} />
           
@@ -403,7 +508,7 @@ const MustPickProducts = () => {
             ref={rowId === 'row1' ? row1TouchRef : row2TouchRef}
             className={`
               ${isDesktop 
-                ? `cursor-grab active:cursor-grabbing flex justify-center scale-80 md:scale-100 mx-12 sm:mx-14 md:mx-16 lg:mx-18 pl-30 select-none ${isSwipeActive && isHorizontalSwipe ? 'cursor-grabbing' : ''}`
+                ? `pl-20 cursor-grab active:cursor-grabbing flex justify-center scale-80 md:scale-100 mx-8 sm:mx-10 md:mx-12 lg:mx-16 xl:mx-20 select-none ${isSwipeActive && isHorizontalSwipe ? 'cursor-grabbing' : ''}`
                 : 'overflow-hidden cursor-grab active:cursor-grabbing'
               }
             `}
@@ -432,21 +537,22 @@ const MustPickProducts = () => {
               >
                 {visibleProducts.map((product, index) => (
                   <div 
-                    key={`${rowId}-${product.id}-${currentIndex}-${index}`}
+                    key={`${rowId}-${product.id}-${index}`} // Optimized key without currentIndex
                     className={`
                       flex-shrink-0 transform transition-all duration-500 ease-in-out select-none
                       w-72 sm:w-80 lg:w-80
-                      ${!isDesktop && index === 2 ? 'hidden lg:block' : ''}
-                      ${!isDesktop && index === 1 ? 'hidden sm:block' : ''}
+                      ${!isDesktop && index === 3 ? 'hidden lg:block' : ''}
+                      ${!isDesktop && index === 2 ? 'hidden sm:block' : ''}
+                      ${!isDesktop && index === 1 ? 'hidden xs:block' : ''}
                     `}
                     style={isDesktop ? {
-                      opacity: index === 2 ? 0.8 : 1,
-                      transform: `scale(${index === 0 ? 1.02 : index === 1 ? 1.02 : 0.95})`,
-                      clipPath: index === 2 ? 'inset(0 50% 0 0)' : 'none',
+                      opacity: index === 3 ? 0.7 : 1, // Fourth card (half-visible) has reduced opacity
+                      transform: `scale(${index === 0 ? 1.02 : index === 1 ? 1.02 : index === 2 ? 1.02 : 0.95})`, // First 3 cards full scale, 4th smaller
+                      clipPath: index === 3 ? 'inset(0 50% 0 0)' : 'none', // Half-visible effect for 4th card
                       pointerEvents: (isSwipeActive && isHorizontalSwipe) ? 'none' : 'auto'
                     } : {
-                      opacity: 1,
-                      transform: `translateX(${index * 8}px) scale(${index === 1 ? 1.02 : 0.98})`
+                      opacity: index === 3 ? 0.6 : 1,
+                      transform: `translateX(${index * 8}px) scale(${index === 1 ? 1.02 : index === 2 ? 1.0 : index === 3 ? 0.9 : 0.98})`
                     }}
                   >
                     <MustPickCard
@@ -463,12 +569,15 @@ const MustPickProducts = () => {
           </div>
         </div>
 
-        {/* Slide indicators - Responsive */}
+        {/* Slide indicators with fixed event handling */}
         <div className="flex justify-center mt-4 sm:mt-6 space-x-1 sm:space-x-2">
           {products.map((_, index) => (
             <button
-              key={index}
-              onClick={() => {
+              key={`${rowId}-indicator-${index}`} // Stable key for indicators
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
                 if (isDesktop) {
                   setIsAnimating(prev => ({ ...prev, [rowId]: true }));
                 }
@@ -493,7 +602,12 @@ const MustPickProducts = () => {
                   : 'bg-white hover:bg-gray-400'
                 }
                 ${isDesktop && Math.abs(currentOffset) > 30 ? 'opacity-60' : ''}
+                focus:outline-none focus:ring-0
               `}
+              style={{ 
+                WebkitTapHighlightColor: 'transparent',
+                outline: 'none'
+              }}
             />
           ))}
         </div>
@@ -516,7 +630,13 @@ const MustPickProducts = () => {
         )}
       </div>
     );
-  };
+  });
+
+  // Memoize navigation callbacks for each row to prevent re-renders
+  const row1Previous = useCallback(() => goToPrevious('row1'), [goToPrevious]);
+  const row1Next = useCallback(() => goToNext('row1'), [goToNext]);
+  const row2Previous = useCallback(() => goToPrevious('row2'), [goToPrevious]);
+  const row2Next = useCallback(() => goToNext('row2'), [goToNext]);
 
   // Don't render until client-side to avoid hydration mismatch
   if (!isClient) {
@@ -558,23 +678,22 @@ const MustPickProducts = () => {
         
         {/* Cards Container */}
         <div className={isDesktop ? "flex flex-col items-center justify-center" : ""}>
-          {/* Row 1 - First 4 products */}
+          {/* Row 1 - First 8 products */}
           <SlideRow 
             products={row1Products} 
             currentIndex={row1Index} 
             rowId="row1"
-            onPrevious={() => goToPrevious('row1')}
-            onNext={() => goToNext('row1')}
+            onPrevious={row1Previous}
+            onNext={row1Next}
           />
           
-          {/* TODO : Have to fix this part later*/}
-          {/* Row 2 - Last 4 products */}
+          {/* Row 2 - Last 8 products */}
           <SlideRow 
             products={row2Products} 
             currentIndex={row2Index} 
             rowId="row2"
-            onPrevious={() => goToPrevious('row2')}
-            onNext={() => goToNext('row2')}
+            onPrevious={row2Previous}
+            onNext={row2Next}
           />
         </div>
       </div>

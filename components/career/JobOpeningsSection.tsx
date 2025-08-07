@@ -7,7 +7,7 @@ interface JobOpeningsSectionProps {
 
 const JobOpeningsSection: React.FC<JobOpeningsSectionProps> = ({ className = '' }) => {
   return (
-    <div className={`py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 ${className}`}>
+    <div className={`-mt-24 md:-mt-0 py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 ${className}`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
