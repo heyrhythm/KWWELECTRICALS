@@ -52,7 +52,7 @@ const WhyChooseKWW = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-8 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6">
+    <section className="bg-gray-50 -mt-10 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6">
       <div className="max-w-7xl mx-auto scale-90 md:scale-100">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-20">

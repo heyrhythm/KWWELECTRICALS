@@ -1,9 +1,13 @@
-import React from 'react'
+"use client"
 
-const page = () => {
+import DealerLocator from "@/components/dealer-locator"
+import NoStoreBanner from "@/components/NoStoreBanner"
+
+export default function DealersPage() {
   return (
-    <div>page</div>
+    <>
+  <DealerLocator />
+  <NoStoreBanner/>
+  </>
   )
 }
-
-export default page

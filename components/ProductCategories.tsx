@@ -39,9 +39,9 @@ const ProductCategories = () => {
   ];
 
   return (
-    <section className="bg-gradient-to-b from-white from-50% to-red-600 to-50% h-200 sm:h-190 lg:h-auto overflow-hidden">
-      <div className="w-full">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 pt-9 sm:pt-12 lg:pt-16 scale-80 md:scale-100 origin-top">
+    <section className=" bg-gradient-to-b from-white from-50% to-red-600 to-50%  ">
+      <div className="w-full py-12 sm:py-16 lg:py-20 -mb-48 md:-mb-0">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6   scale-80 md:scale-100 origin-top">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-10 lg:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-3 lg:mb-4">
@@ -91,7 +91,7 @@ const ProductCategories = () => {
           </div>
 
           {/* View All Products Button */}
-          <div className="text-center">
+          <div className="text-center pt-5 md:pt-10">
             <button className="bg-white text-red-600 px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-lg mb-8 mt-4 font-bold text-base sm:text-lg hover:bg-red-800 hover:text-white transition-colors duration-200 shadow-lg hover:shadow-xl cursor-pointer">
               View All Products
             </button>

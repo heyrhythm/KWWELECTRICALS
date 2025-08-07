@@ -236,7 +236,7 @@ const ProductCategoryGrid: React.FC<ProductCategoryGridProps> = ({
   };
 
   return (
-    <div className={`lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 pt-5 lg:pt-0 ${className}`}>
+    <div className={`lg:max-w-7xl lg:mx-auto w-full flex justify-center items-center lg:pb-5 pt-5 md:pt-5 ${className}`}>
       {/* Mobile: Horizontal scroll - Fixed scaling and alignment issues */}
       <div className="block lg:hidden w-full">
         <div className="overflow-x-auto">

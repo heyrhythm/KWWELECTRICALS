@@ -152,10 +152,10 @@ const BlogShowcase: React.FC = () => {
   };
 
   return (
-    <section className="-mt-24 md:-mt-0  scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <section className="  scale-90 md:scale-100 max-w-full py-2 md:py-16 sm:max-w-3xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
       {/* ─────────────── 1) HEADER ─────────────── */}
       <div className="text-center mb-10 sm:mb-12">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
           Latest Blog Posts & Industry News
         </h2>
         <p className="text-gray-600 mt-3 text-sm sm:text-base max-w-2xl mx-auto">

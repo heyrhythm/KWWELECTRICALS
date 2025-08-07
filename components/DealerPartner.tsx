@@ -7,11 +7,11 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 const DealerPartner: React.FC = () => {
   return (
     
-    <section className='-mt-20 md:-mt-0  bg-gradient-to-br from-[#ecf2ff] to-[#e8efff]  sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8'>
+    <section className='  bg-gradient-to-br from-[#ecf2ff] to-[#e8efff]    md:py-16 px-4 sm:px-6 lg:px-8'>
     <div className=" scale-90 md:scale-100 max-w-full sm:max-w-3xl lg:max-w-6xl mx-auto">
       {/* ─────────── 1) HEADER ─────────── */}
-      <div className=" max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto text-center mb-10 sm:mb-14">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-4">
+      <div className=" -mt-5 md:-mt-0 max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
           Become a KWW Dealer Partner
         </h2>
         <p className="text-gray-600 text-sm sm:text-base">

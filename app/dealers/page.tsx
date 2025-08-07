@@ -1,7 +1,7 @@
 "use client"
 
-import DealerLocator from "@/components/dealer-locator"
+import DealerPartner from "@/components/DealerPartner"
 
 export default function DealersPage() {
-  return <DealerLocator />
+  return <DealerPartner />
 }

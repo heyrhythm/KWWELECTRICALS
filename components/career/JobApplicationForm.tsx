@@ -39,12 +39,12 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ className = '' 
   };
 
   return (
-    <div className={`pb-10 md:pb-25 px-3 sm:px-4 lg:px-8 ${className}`}>
+    <div className={`pt-7 md:pt-16 pb-10 md:pb-25 px-3 sm:px-4 lg:px-8 ${className}`}>
       <div className="w-full max-w-5xl mx-auto bg-blue-50 rounded-lg sm:rounded-xl py-6 sm:py-10 md:py-12 lg:py-16 px-3 sm:px-6 md:px-8 lg:px-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8 md:mb-10">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 px-2">
+          <div className="py-5 text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 px-2">
               Apply for a Position
             </h2>
             <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed px-2 max-w-2xl mx-auto">

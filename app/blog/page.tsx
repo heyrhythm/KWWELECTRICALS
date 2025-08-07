@@ -1,9 +1,7 @@
-import React from 'react'
+"use client";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+import BlogShowcase from "@/components/BlogShowcase";
+
+export default function BlogPage() {
+  return <BlogShowcase/>
 }
-
-export default page

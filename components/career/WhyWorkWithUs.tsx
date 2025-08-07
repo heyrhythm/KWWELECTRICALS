@@ -3,12 +3,12 @@ import React from 'react';
 
 const WhyWorkWithUs: React.FC = () => {
   return (
-    <div className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className=" pt-12 md:pt-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-4 md:space-y-6 order-2 lg:order-1">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+            <h2 className="pt-7 md:pt-0 text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
               Why Work With Us?
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">

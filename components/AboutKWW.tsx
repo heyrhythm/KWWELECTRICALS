@@ -27,12 +27,12 @@ const features = [
 ];
 
 const AboutKWW: React.FC = () => (
-  <section className="bg-gray-50 py-3 sm:py-12 lg:py-0 px-3 sm:px-4 lg:px-6 h-100 lg:h-200">
-    <div className="scale-92 md:scale-100 lg:max-w-7xl lg:mx-auto pt-1 pb-1 lg:pt-10 lg:pb-10 sm:px-4 lg:px-6">
+  <section className="bg-gray-50 mb-10 md:mb-0  pt-12 md:pt-16 px-3 sm:px-4 lg:px-6 h-100 lg:h-200">
+    <div className="scale-92 md:scale-100 lg:max-w-7xl lg:mx-auto  sm:px-4 lg:px-6">
       <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-center">
         {/* Left Content (Text) */}
         <div className="flex flex-col space-y-1 lg:space-y-6">
-          <h2 className="text-[13px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight truncate">
+          <h2 className="text-[11px] sm:text-3xl lg:text-4xl font-bold leading-tight truncate">
             <span className="text-black">About</span>{" "}
             <span className="text-black">KWW Electricals</span>
           </h2>

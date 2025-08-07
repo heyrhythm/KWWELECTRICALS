@@ -1,9 +1,5 @@
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
+"use client";
+import Career from "@/components/career/Career";
+export default function CareersPage() {
+  return <Career/>
 }
-
-export default page

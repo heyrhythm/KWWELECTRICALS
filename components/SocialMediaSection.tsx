@@ -161,10 +161,10 @@ const SocialMediaSection: React.FC = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16">
+    <section className="scale-90 md:scale-100 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12 sm:space-y-16">
       {/* Header */}
       <div className="text-center space-y-3 sm:space-y-4">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
           Follow Us on Social Media
         </h2>
         <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">

@@ -111,7 +111,7 @@ const EmployeeBenefits: React.FC = () => {
   };
 
   return (
-    <div className="-mt-14 md:-mt-0 py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className=" pt-7 md:pt-8 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
