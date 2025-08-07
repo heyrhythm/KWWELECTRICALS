@@ -10,7 +10,7 @@ const ProductCategories = () => {
       description: "Energy-efficient LED bulbs, tubes and decorative lighting solutions",
       icon: <FaLightbulb className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />,
       iconBg: "bg-orange-500",
-      image: "/assets/products/gandu2.JPG",
+      image: "/assets/products/gandu2.jpg",
     },
     {
       id: 2,
