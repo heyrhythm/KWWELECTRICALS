@@ -14,17 +14,19 @@ interface ImageData {
 interface MustPickCardProps {
   images: ImageData[];
   companyName: string;
-  productType: string;
+  // productType: string;
   highlightColor?: string;
   className?: string;
+  companyLogo: string; // Added company logo prop
 }
 
 const MustPickCard: React.FC<MustPickCardProps> = ({ 
   images = [], // ✅ Default empty array
   companyName = 'COMPANY', // ✅ Default values
-  productType = 'product',
+  // productType = 'product',
   highlightColor = 'red-600',
-  className = ''
+  className = '',
+  companyLogo = '/placeholder-logo.png' // Default logo
 }) => {
   // ✅ Safety check BEFORE useState
   const safeImages = images && images.length > 0 ? images : [
@@ -53,7 +55,12 @@ const MustPickCard: React.FC<MustPickCardProps> = ({
       'rose-600': 'text-rose-600',
       'violet-600': 'text-violet-600',
       'yellow-600': 'text-yellow-600',
-      'pink-600': 'text-pink-600'
+      'pink-600': 'text-pink-600',
+      'amber-600': 'text-amber-600',
+      'lime-600': 'text-lime-600',
+      'emerald-600': 'text-emerald-600',
+      'sky-600': 'text-sky-600',
+      'fuchsia-600': 'text-fuchsia-600'
     };
     return colorMap[color] || 'text-red-600';
   };
@@ -100,15 +107,31 @@ const MustPickCard: React.FC<MustPickCardProps> = ({
         </div>
       </div>
 
-      {/* Company title */}
+      {/* Company Logo Container - REPLACED TEXT WITH IMAGE */}
       <div className="text-center mt-6">
-        <h2 className="text-xl font-bold text-gray-800 tracking-wide">
-          <span className={getHighlightColor(highlightColor)}>
-            {companyName.charAt(0)}
+        <div className="bg-white p-3 rounded-lg flex items-center justify-center h-16 border border-gray-100 shadow-sm">
+          <Image 
+            src={companyLogo} 
+            alt={`${companyName} logo`}
+            width={120}
+            height={40}
+            className="max-h-full max-w-full object-contain"
+            onError={(e) => {
+              // Fallback if logo fails to load
+              const target = e.currentTarget as HTMLImageElement;
+              target.style.display = 'none';
+              if (target.nextElementSibling) {
+                (target.nextElementSibling as HTMLElement).style.display = 'block';
+              }
+            }}
+          />
+          {/* Fallback text (hidden by default) */}
+          <span className="hidden text-sm font-semibold text-gray-700">
+            {companyName}
           </span>
-          {companyName.slice(1)}
-        </h2>
-        <p className="text-sm text-gray-600 mt-1">{productType}</p>
+        </div>
+        {/* Optional: Keep product type as small text below logo */}
+        {/* <p className="text-xs text-gray-500 mt-2 uppercase tracking-wide">{productType}</p> */}
       </div>
     </div>
   );

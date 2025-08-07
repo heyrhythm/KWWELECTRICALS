@@ -15,10 +15,11 @@ interface ProductData {
   companyName: string;
   productType: string;
   highlightColor: string;
+  companyLogo: string; // Added company logo field
 }
 
 const MustPickProducts = () => {
-  // Product data with your actual image paths
+  // Product data with your actual image paths and company logos
   const allProducts: ProductData[] = [
     {
       id: 1,
@@ -29,7 +30,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'HAVELLS',
       productType: 'ceiling fan',
-      highlightColor: 'blue-600'
+      highlightColor: 'blue-600',
+      companyLogo: '/assets/logos/havells-logo.png'
     },
     {
       id: 2,
@@ -40,7 +42,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'ORIENT',
       productType: 'table fan',
-      highlightColor: 'green-600'
+      highlightColor: 'green-600',
+      companyLogo: '/assets/logos/orient-logo.png'
     },
     {
       id: 3,
@@ -51,7 +54,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'PHILIPS',
       productType: 'LED bulb',
-      highlightColor: 'yellow-600'
+      highlightColor: 'yellow-600',
+      companyLogo: '/assets/logos/philips-logo.svg'
     },
     {
       id: 4,
@@ -62,7 +66,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'SYSKA',
       productType: 'panel light',
-      highlightColor: 'indigo-600'
+      highlightColor: 'indigo-600',
+      companyLogo: '/assets/logos/syska-logo.jpg'
     },
     {
       id: 5,
@@ -73,7 +78,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'BAJAJ',
       productType: 'cooler',
-      highlightColor: 'cyan-600'
+      highlightColor: 'cyan-600',
+      companyLogo: '/assets/logos/bajaj-logo.png'
     },
     {
       id: 6,
@@ -84,7 +90,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'PRESTIGE',
       productType: 'induction',
-      highlightColor: 'purple-600'
+      highlightColor: 'purple-600',
+      companyLogo: '/assets/logos/prestige-logo.svg'
     },
     {
       id: 7,
@@ -95,7 +102,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'PREETHI',
       productType: 'mixer grinder',
-      highlightColor: 'orange-600'
+      highlightColor: 'orange-600',
+      companyLogo: '/assets/logos/preethi-logo.png'
     },
     {
       id: 8,
@@ -106,7 +114,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'MORPHY',
       productType: 'iron',
-      highlightColor: 'rose-600'
+      highlightColor: 'rose-600',
+      companyLogo: '/assets/logos/morphy-logo.jpg'
     },
     {
       id: 9,
@@ -117,7 +126,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'KENT',
       productType: 'air fryer',
-      highlightColor: 'red-600'
+      highlightColor: 'red-600',
+      companyLogo: '/assets/logos/kent-logo.png'
     },
     {
       id: 10,
@@ -128,7 +138,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'AQUAGUARD',
       productType: 'water purifier',
-      highlightColor: 'teal-600'
+      highlightColor: 'teal-600',
+      companyLogo: '/assets/logos/aquaguard-logo.svg'
     },
     {
       id: 11,
@@ -139,7 +150,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'LG',
       productType: 'microwave',
-      highlightColor: 'pink-600'
+      highlightColor: 'pink-600',
+      companyLogo: '/assets/logos/lg-logo.png'
     },
     {
       id: 12,
@@ -150,7 +162,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'EUREKA',
       productType: 'vacuum cleaner',
-      highlightColor: 'emerald-600'
+      highlightColor: 'emerald-600',
+      companyLogo: '/assets/logos/eureka-logo.jpg'
     },
     {
       id: 13,
@@ -161,7 +174,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'PRESTIGE',
       productType: 'electric kettle',
-      highlightColor: 'amber-600'
+      highlightColor: 'amber-600',
+      companyLogo: '/assets/logos/prestige-logo.svg'
     },
     {
       id: 14,
@@ -172,7 +186,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'PHILIPS',
       productType: 'food processor',
-      highlightColor: 'lime-600'
+      highlightColor: 'lime-600',
+      companyLogo: '/assets/logos/philips-logo.svg'
     },
     {
       id: 15,
@@ -183,7 +198,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'DYSON',
       productType: 'hair dryer',
-      highlightColor: 'fuchsia-600'
+      highlightColor: 'fuchsia-600',
+      companyLogo: '/assets/logos/dyson-logo.png'
     },
     {
       id: 16,
@@ -194,7 +210,8 @@ const MustPickProducts = () => {
       ],
       companyName: 'AMAZON',
       productType: 'smart speaker',
-      highlightColor: 'sky-600'
+      highlightColor: 'sky-600',
+      companyLogo: '/assets/logos/amazon-logo.svg'
     }
   ];
 
@@ -558,8 +575,9 @@ const MustPickProducts = () => {
                     <MustPickCard
                       images={product.images}
                       companyName={product.companyName}
-                      productType={product.productType}
+                      // productType={product.productType}
                       highlightColor={product.highlightColor}
+                      companyLogo={product.companyLogo} // Pass the logo prop
                       className="shadow-lg hover:shadow-xl transition-shadow duration-300 h-full"
                     />
                   </div>

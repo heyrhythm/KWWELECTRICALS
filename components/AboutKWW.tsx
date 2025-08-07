@@ -27,7 +27,7 @@ const features = [
 ];
 
 const AboutKWW: React.FC = () => (
-  <section className="bg-gray-50 py-3 sm:py-12 lg:py-16 px-3 sm:px-4 lg:px-6 h-100 lg:h-200">
+  <section className="bg-gray-50 py-3 sm:py-12 lg:py-0 px-3 sm:px-4 lg:px-6 h-100 lg:h-200">
     <div className="scale-92 md:scale-100 lg:max-w-7xl lg:mx-auto pt-1 pb-1 lg:pt-10 lg:pb-10 sm:px-4 lg:px-6">
       <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 lg:items-center">
         {/* Left Content (Text) */}

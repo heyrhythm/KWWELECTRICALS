@@ -1,12 +1,9 @@
-import AboutKWW from '@/components/AboutKWW'
-import React from 'react'
+// app/about/page.tsx
+'use client';
+import AboutKWW from "@/components/AboutKWW";
 
-const page = () => {
-  return (
-    <div>
-        <AboutKWW />
-    </div>
-  )
+
+
+export default function AboutPage() {
+  return <AboutKWW />;
 }
-
-export default page

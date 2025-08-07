@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   FaUserCircle,
@@ -123,6 +124,30 @@ const Header: React.FC = () => {
     "Contacts",
   ];
 
+  /* ---------- HELPER FUNCTION FOR ROUTES ---------- */
+  const getRouteForItem = (item: string): string => {
+    switch (item) {
+      case "Home":
+        return "/";
+      case "About":
+        return "/about";
+      case "Services":
+        return "/services";
+      case "Store Locator":
+        return "/store-locator";
+      case "Dealers":
+        return "/dealers";
+      case "Blog":
+        return "/blog";
+      case "Careers":
+        return "/careers";
+      case "Contacts":
+        return "/contacts";
+      default:
+        return `/${item.toLowerCase().replace(/ /g, "-")}`;
+    }
+  };
+
   /* ---------- NAVIGATION HANDLER ---------- */
   const handleNavItemClick = (item: string) => {
     if (item === "Products") {
@@ -136,39 +161,9 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
     setIsMobileProductOpen(false);
     setExpandedMobileCategory(null);
-
-    switch (item) {
-      case "Home":
-        router.push("/");
-        break;
-      case "About":
-        router.push("/about");
-        break;
-      case "Services":
-        router.push("/services");
-        break;
-      case "Store Locator":
-        router.push("/store-locator");
-        break;
-      case "Dealers":
-        router.push("/dealers");
-        break;
-      case "Blog":
-        router.push("/blog");
-        break;
-      case "Careers":
-        router.push("/careers");
-        break;
-      case "Contacts":
-        router.push("/contacts");
-        break;
-      default:
-        router.push(`/${item.toLowerCase().replace(/ /g, "-")}`);
-        break;
-    }
   };
 
-  /* ---------- JSX ---------- */
+  /* ---------- tsx part ---------- */
   return (
     <>
       {/* HEADER */}
@@ -195,18 +190,17 @@ const Header: React.FC = () => {
 
               {/* Logo - Always present */}
               <div className="flex items-center flex-shrink-0">
-                <div 
-                  className="flex items-center scale-150 lg:scale-160 cursor-pointer"
-                  onClick={() => handleNavItemClick("Home")}
-                >
-                  <Image
-                    src="/assets/icons/KWW Logo.svg"
-                    alt="KWW Electricals Logo"
-                    width={80}
-                    height={40}
-                    className="w-16 h-8 sm:w-20 sm:h-10 lg:w-24 lg:h-12"
-                  />
-                </div>
+                <Link href="/" prefetch={true}>
+                  <div className="flex items-center scale-150 lg:scale-160 cursor-pointer">
+                    <Image
+                      src="/assets/icons/KWW Logo.svg"
+                      alt="KWW Electricals Logo"
+                      width={80}
+                      height={40}
+                      className="w-16 h-8 sm:w-20 sm:h-10 lg:w-24 lg:h-12"
+                    />
+                  </div>
+                </Link>
               </div>
             </div>
 
@@ -227,12 +221,11 @@ const Header: React.FC = () => {
             {/* Right Section: Dealer + Profile + Cart */}
             <div className="flex items-center gap-1 lg:gap-6 -space-x-3">
               {/* Become A Dealer Button */}
-              <button 
-                className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2"
-                onClick={() => handleNavItemClick("Dealers")}
-              >
-                <span className="lg:inline text-xs">Become A Dealer</span>
-              </button>
+              <Link href="/dealers" prefetch={true}>
+                <button className="bg-red-700 hover:bg-red-800 text-white px-2 py-1.5 lg:px-6 lg:py-2 rounded-full text-xs lg:text-sm lg:rounded-lg font-semibold transition-colors duration-200 whitespace-nowrap scale-85 lg:scale-100 lg:mr-2">
+                  <span className="lg:inline text-xs">Become A Dealer</span>
+                </button>
+              </Link>
 
               {/* Profile Button */}
               <button
@@ -308,18 +301,20 @@ const Header: React.FC = () => {
                               {expandedMobileCategory === cat.id && (
                                 <div className="pl-12 pr-4 py-1 space-y-1 ">
                                   {cat.products.map((p) => (
-                                    <button
+                                    <Link
                                       key={p.name}
+                                      href={p.url}
+                                      prefetch={true}
                                       onClick={() => {
-                                        router.push(p.url);
                                         setIsMobileMenuOpen(false);
                                         setIsMobileProductOpen(false);
                                         setExpandedMobileCategory(null);
                                       }}
-                                      className="block w-full text-left text-xs py-1.5 text-gray-700 hover:text-red-600 transition-colors duration-200"
                                     >
-                                      {p.name}
-                                    </button>
+                                      <span className="block w-full text-left text-xs py-1.5 text-gray-700 hover:text-red-600 transition-colors duration-200 cursor-pointer">
+                                        {p.name}
+                                      </span>
+                                    </Link>
                                   ))}
                                 </div>
                               )}
@@ -329,21 +324,25 @@ const Header: React.FC = () => {
                       )}
                     </React.Fragment>
                   ) : (
-                    <button
+                    <Link 
                       key={item}
+                      href={getRouteForItem(item)}
+                      prefetch={true}
                       onClick={() => {
-                        handleNavItemClick(item);
+                        setActiveItem(item);
+                        setIsMobileMenuOpen(false);
                         setIsMobileProductOpen(false);
                         setExpandedMobileCategory(null);
                       }}
-                      className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
+                    >
+                      <span className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 block cursor-pointer ${
                         activeItem === item
                           ? "text-red-600 bg-red-50 font-semibold"
                           : "text-gray-700 hover:text-red-600 hover:bg-gray-50"
-                      }`}
-                    >
-                      {item}
-                    </button>
+                      }`}>
+                        {item}
+                      </span>
+                    </Link>
                   )
                 )}
               </div>
@@ -372,29 +371,51 @@ const Header: React.FC = () => {
                     }
                   }}
                 >
-                  <button
-                    onClick={() => handleNavItemClick(item)}
-                    className={`py-4 px-5 relative transition-colors duration-200 ${
-                      activeItem === item || (item === "Products" && isProductCatalogOpen)
-                        ? "text-red-600 font-semibold"
-                        : "text-gray-700 hover:text-red-600"
-                    }`}
-                  >
-                    {item}
-                    {item === "Products" && (
+                  {item === "Products" ? (
+                    // Keep Products as button since it opens catalog
+                    <button
+                      onClick={() => handleNavItemClick(item)}
+                      className={`py-4 px-5 relative transition-colors duration-200 ${
+                        activeItem === item || (item === "Products" && isProductCatalogOpen)
+                          ? "text-red-600 font-semibold"
+                          : "text-gray-700 hover:text-red-600"
+                      }`}
+                    >
+                      {item}
                       <FaChevronDown
                         className={`w-4 h-4 inline ml-1 transition-transform duration-200 ${
                           isProductCatalogOpen ? "rotate-180" : ""
                         }`}
                       />
-                    )}
-                    {item === "Services" && (
-                      <FaChevronDown className="w-4 h-4 inline ml-1" />
-                    )}
-                    {(activeItem === item || (item === "Products" && isProductCatalogOpen)) && (
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
-                    )}
-                  </button>
+                      {(activeItem === item || (item === "Products" && isProductCatalogOpen)) && (
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
+                      )}
+                    </button>
+                  ) : (
+                    // Use Link for other navigation items
+                    <Link 
+                      href={getRouteForItem(item)}
+                      prefetch={true}
+                      onClick={() => {
+                        setActiveItem(item);
+                        setIsProductCatalogOpen(false);
+                      }}
+                    >
+                      <span className={`py-4 px-5 relative transition-colors duration-200 block cursor-pointer ${
+                        activeItem === item
+                          ? "text-red-600 font-semibold"
+                          : "text-gray-700 hover:text-red-600"
+                      }`}>
+                        {item}
+                        {item === "Services" && (
+                          <FaChevronDown className="w-4 h-4 inline ml-1" />
+                        )}
+                        {activeItem === item && (
+                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-600 rounded-t"></div>
+                        )}
+                      </span>
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
