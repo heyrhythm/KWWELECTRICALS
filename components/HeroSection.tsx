@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 // desktop (or shared) images
-import fanDesk       from "@/public/assets/herosection/Home-Page-banner_BLDC-Fan.webp";
-import coolerDesk    from "@/public/assets/herosection/Home-Page-banner_Cooler.webp";
-import applianceDesk from "@/public/assets/herosection/Home-Page-banner_Home-Appliances.webp";
-import ledDesk       from "@/public/assets/herosection/Home-Page-banner_LED-Lights.webp";
+import fanDesk       from "../public/assets/herosection/Home-Page-banner_BLDC-Fan.webp";
+import coolerDesk    from "../public/assets/herosection/Home-Page-banner_Cooler.webp";
+import applianceDesk from "../public/assets/herosection/Home-Page-banner_Home-Appliances.webp";
+import ledDesk       from "../public/assets/herosection/Home-Page-banner_LED-Lights.webp";
 
 // mobile-specific images
-import fanMob        from "@/public/assets/herosection/Home-Page-banner_BLDC-Fan.jpg";
-import coolerMob     from "@/public/assets/herosection/Home-Page-banner_Cooler.jpg";
-import applianceMob  from "@/public/assets/herosection/Home-Page-banner_Home-Appliances.jpg";
-import ledMob        from "@/public/assets/herosection/Home-Page-banner_LED-Lights.jpg";
+import fanMob        from "../public/assets/herosection/Home-Page-banner_BLDC-Fan.jpg";
+import coolerMob     from "../public/assets/herosection/Home-Page-banner_Cooler.jpg";
+import applianceMob  from "../public/assets/herosection/Home-Page-banner_Home-Appliances.jpg";
+import ledMob        from "../public/assets/herosection/Home-Page-banner_LED-Lights.jpg";
 
 /*──────────────── TYPES ────────────────*/
 type TitlePart = { text:string; color:"blue"|"red"|"white"; newLine?:boolean };

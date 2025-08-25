@@ -1,17 +1,23 @@
 // src/app/api/users/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { prisma } from "lib/db";
 import bcrypt from "bcryptjs";
 
 export const runtime = "nodejs"; // Prisma needs Node runtime (not Edge)
 
 export async function GET() {
-  const users = await prisma.user.findMany({
-    select: { id: true, phone: true, createdAt: true }, // don't expose passwordHash
-    orderBy: { createdAt: "desc" },
-  });
-  return NextResponse.json(users);
+  try {
+    const users = await prisma.user.findMany({
+      select: { id: true, phone: true, createdAt: true },
+      orderBy: { createdAt: "desc" },
+    });
+    return NextResponse.json(users);
+  } catch (error) {
+    console.error("GET /api/users error:", error);
+    return NextResponse.json({ error: "server error" }, { status: 500 });
+  }
 }
+
 
 export async function POST(req: Request) {
   try {
@@ -36,7 +42,7 @@ export async function POST(req: Request) {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-
+    
     const user = await prisma.user.create({
       data: { phone, passwordHash },
       select: { id: true, phone: true, createdAt: true },

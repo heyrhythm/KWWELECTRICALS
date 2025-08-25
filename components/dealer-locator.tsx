@@ -3,7 +3,7 @@
 
 import { useMemo, useState } from 'react';
 import Head from 'next/head';
-import DealerLocationCard from '@/components/DealerLocationCard';
+import DealerLocationCard from '../components/DealerLocationCard';
 import {
   Search,
   LocateFixed,

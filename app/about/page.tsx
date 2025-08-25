@@ -1,6 +1,6 @@
 // app/about/page.tsx
 'use client';
-import AboutKWW from "@/components/AboutKWW";
+import AboutKWW from "../../components/AboutKWW";
 
 
 

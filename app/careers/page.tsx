@@ -1,5 +1,5 @@
 "use client";
-import Career from "@/components/career/Career";
+import Career from "../../components/career/Career";
 export default function CareersPage() {
   return <Career/>
 }

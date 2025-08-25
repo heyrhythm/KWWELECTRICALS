@@ -84,17 +84,17 @@ const LoginPage: React.FC = () => {
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
-          <div className="mx-auto h-16 w-auto mb-6">
+          <div className="mx-auto h-16 w-auto mb-14">
             {/* Logo */}
-            <Link href="/">
+            
               <Image
-                src="/images/logo/kww-logo.png"
+                src="/assets/icons/KWW icon.svg"
                 alt="KWW Electricals"
                 width={120}
                 height={64}
                 className="mx-auto cursor-pointer"
               />
-            </Link>
+           
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome Back

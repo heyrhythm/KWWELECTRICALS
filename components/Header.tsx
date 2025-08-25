@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   FaUserCircle,
   FaSearch,
@@ -13,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ProductCatalog from "./ProductCatalog";
+import { ProfileDropdown } from "./ProfileDropdown";
 
 /* ---------- TYPES ---------- */
 interface Product {
@@ -99,6 +101,10 @@ const categories: Category[] = [
 
 /* ---------- COMPONENT ---------- */
 const Header: React.FC = () => {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
@@ -228,12 +234,8 @@ const Header: React.FC = () => {
               </Link>
 
               {/* Profile Button */}
-              <button
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-600 scale-85 lg:scale-100"
-                aria-label="Profile"
-              >
-                <FaUserCircle className="w-5 h-5 lg:w-6 lg:h-6 text-gray-600" />
-              </button>
+             <ProfileDropdown profileName="Admin User" />
+
 
               {/* Cart Button */}
               <button
@@ -262,7 +264,7 @@ const Header: React.FC = () => {
 
       {/* MOBILE SIDE MENU */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md px-4 pb-4 relative z-20 ">
+        <div className="lg:hidden bg-white shadow-md px-4 pb-4 relative z-10 ">
           <div className="max-w-7xl mx-auto">
             <div className="border-t border-gray-200 pt-3">
               <div className="flex flex-col space-y-1">
@@ -356,7 +358,7 @@ const Header: React.FC = () => {
         className="hidden lg:block relative"
         onMouseEnter={() => setIsProductCatalogOpen(false)} // Close if hovering elsewhere
       >
-        <nav className="bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative z-30">
+        <nav className="bg-[#f2eeed] shadow-[inset_0_8px_8px_-4px_rgba(0,0,0,0.1),inset_0_4px_4px_-2px_rgba(0,0,0,0.06),inset_0_2px_2px_-1px_rgba(0,0,0,0.03)] relative ">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center px-4">
               {navItems.map((item) => (
