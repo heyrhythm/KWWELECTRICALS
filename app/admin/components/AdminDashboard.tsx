@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import {
   DollarSign,
-  Users,
+  Users as UsersIcon,
   Package,
   ShoppingCart,
   TrendingUp,
   AlertTriangle,
   RefreshCw,
-  CornerUpLeft
+  CornerLeftUp,
 } from 'lucide-react';
 import { StatsCard } from './StatsCard';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 
-// Sales summary tabs/simulation
+// (Your existing static data arrays unchanged here)
 const salesSummaries = {
   daily: { revenue: "$8,400", orders: 120, refunds: "$210", returns: "5" },
   weekly: { revenue: "$52,300", orders: 780, refunds: "$1,280", returns: "28" },
@@ -40,7 +40,7 @@ const statsData = [
     value: '23,456',
     change: '+1,200 from last month',
     trend: 'up' as const,
-    icon: Users,
+    icon: UsersIcon,
     gradient: 'blue' as const
   },
   {
@@ -63,7 +63,7 @@ const statsData = [
 
 const refundsAndReturns = [
   { title: "Refunds", value: "$4,320", icon: RefreshCw, gradient: "blue" },
-  { title: "Returns", value: "97", icon: CornerUpLeft, gradient: "red" }
+  { title: "Returns", value: "97", icon: CornerLeftUp, gradient: "red" }
 ];
 
 const topProducts = [
@@ -84,138 +84,120 @@ export function AdminDashboard() {
   const [selectedRange, setSelectedRange] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-2 sm:p-6 md:p-8  ">
       {/* Welcome Section */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Welcome back, Admin!</h1>
-          <p className="text-muted-foreground mt-2 mb-3">Here's what's happening with your store today.</p>
-          <div className="flex space-x-2">
-            {salesTrends.map((t) => (
+          <p className="text-muted-foreground mt-2 mb-3 max-w-md">
+            Here's what's happening with your store today.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {salesTrends.map(({ range, label }) => (
               <button
-                key={t.range}
-                onClick={() => setSelectedRange(t.range as any)}
+                key={range}
+                onClick={() => setSelectedRange(range as 'daily' | 'weekly' | 'monthly')}
                 className={`px-3 py-1 rounded-lg font-medium transition ${
-                  selectedRange === t.range
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-foreground"
+                  selectedRange === range
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-secondary text-foreground'
                 }`}
               >
-                {t.label}
+                {label}
               </button>
             ))}
           </div>
         </div>
-        <Button className="bg-gradient-violet hover:opacity-90 text-white shadow-soft self-end">
-          <TrendingUp className="w-4 h-4 mr-2" />
-          View Analytics
+        <Button className="mt-4 md:mt-0 flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+          <TrendingUp className="w-4 h-4" /> View Analytics
         </Button>
       </div>
 
-      {/* Sales Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-lg">Revenue</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-xl font-bold">{salesSummaries[selectedRange].revenue}</p>
-          </CardContent>
-        </Card>
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-lg">Orders</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-xl font-bold">{salesSummaries[selectedRange].orders}</p>
-          </CardContent>
-        </Card>
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-lg">Refunds</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-xl font-bold">{salesSummaries[selectedRange].refunds}</p>
-          </CardContent>
-        </Card>
-        <Card className="shadow-card">
-          <CardHeader>
-            <CardTitle className="text-lg">Returns</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-xl font-bold">{salesSummaries[selectedRange].returns}</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {statsData.map((stat, index) => (
-          <StatsCard key={index} {...stat} />
-        ))}
-      </div>
-
-      {/* Refunds & Returns summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {refundsAndReturns.map((item, i) => (
-          <Card key={item.title} className="shadow-card">
+      {/* Sales Summary Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {Object.entries(salesSummaries[selectedRange]).map(([key, val]) => (
+          <Card key={key} className="shadow">
             <CardHeader>
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-${item.gradient}`}>
-                <item.icon className="w-5 h-5 text-white" />
-              </div>
-              <CardTitle className="text-lg">{item.title}</CardTitle>
+              <CardTitle className="capitalize">{key}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xl font-bold">{item.value}</p>
+              <p className="text-xl font-bold">{val}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      {/* Data Tables and Alerts */}
+      {/* Stats grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {statsData.map(({ title, value, change, trend, icon: Icon, gradient }) => (
+          <StatsCard
+            key={title}
+            title={title}
+            value={value}
+            change={change}
+            trend={trend}
+            icon={Icon}
+            gradient={gradient}
+          />
+        ))}
+      </div>
+
+      {/* Refunds and Returns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {refundsAndReturns.map(({ title, value, icon: Icon, gradient }) => (
+          <Card key={title} className="shadow">
+            <CardHeader>
+              <div className={`w-10 h-10 rounded bg-gradient-to-br from-${gradient}-400 to-${gradient}-600 flex items-center justify-center`}>
+                <Icon className="text-white w-6 h-6" />
+              </div>
+              <CardTitle>{title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-xl font-bold">{value}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Bottom Section: Top Products and Low Stock */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        {/* Top Products */}
-        <Card className="shadow-card">
+        {/* Top Selling Products */}
+        <Card className="shadow">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold">Top Selling Products</CardTitle>
+            <CardTitle>Top Selling Products</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {topProducts.map((product, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <p className="font-medium text-sm">{product.name}</p>
-                    <p className="text-xs text-muted-foreground">{product.sales} sales</p>
-                  </div>
-                  <p className="font-semibold text-green">{product.revenue}</p>
-                </div>
+            <ul className="space-y-2">
+              {topProducts.map(({ name }, i) => (
+                <li key={i} className="text-sm font-medium truncate">{name}</li>
               ))}
-            </div>
+            </ul>
           </CardContent>
         </Card>
+
         {/* Low Stock Alerts */}
-        <Card className="shadow-card xl:col-span-2">
+        <Card className="shadow xl:col-span-2">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold flex items-center gap-2">
-              <AlertTriangle className="text-orange-500" /> Low Stock Alerts
+            <CardTitle className="flex items-center gap-2">
+              <AlertTriangle className="text-yellow-600" /> Low Stock Alerts
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {lowStocks.length === 0 ? (
-                <p className="text-muted-foreground">No products are low on stock.</p>
-              ) : (
-                lowStocks.map((item, idx) => (
-                  <div key={item.product} className="flex items-center justify-between">
-                    <span>{item.product}</span>
-                    <span className="font-semibold text-orange-500">{item.stock} left</span>
-                  </div>
-                ))
-              )}
-            </div>
+            {lowStocks.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No products are low on stock.</p>
+            ) : (
+              <ul className="space-y-2">
+                {lowStocks.map(({ product, stock }, i) => (
+                  <li key={i} className="flex justify-between text-sm">
+                    <span>{product}</span>
+                    <span className="font-semibold text-yellow-600">{stock} left</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </CardContent>
         </Card>
       </div>
     </div>
-  );
+  )
 }
