@@ -1,11 +1,11 @@
 // app/products/fans/page.tsx
 import React from 'react';
-import ProductCard from '@/components/ProductCard';
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/fans/HeroSection';
-import MainLayout from '@/components/MainLayout';
-import FanCategories from '@/components/fans/FanCategories';
-import PopularPicks from '@/components/fans/PopularPicks';
+// import ProductCard from '@/components/ProductCard';
+// import Navbar from '@/components/Navbar';
+import HeroSection from '../../../components/fans/HeroSection';
+import MainLayout from '../../../components/MainLayout';
+import FanCategories from '../../../components/fans/FanCategories';
+import PopularPicks from '../../../components/fans/PopularPicks';
 
 const fansData = [
   {
