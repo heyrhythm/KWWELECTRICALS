@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '../../components/ProductCard';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 interface Product {
