@@ -84,7 +84,7 @@ export function AdminDashboard() {
   const [selectedRange, setSelectedRange] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
 
   return (
-    <div className="space-y-8 p-2 sm:p-6 md:p-8  ">
+    <div className="space-y-8 pb-10   ">
       {/* Welcome Section */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>

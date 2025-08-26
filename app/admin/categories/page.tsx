@@ -190,7 +190,7 @@ export default function CategoriesPage() {
   };
 
   return (
-    <div className="max-w-full p-6 mx-auto space-y-10">
+    <div className=" space-y-10">
       <h1 className="text-3xl font-bold mb-6">Category & Brand Management</h1>
 
       {/* Add Category Form */}

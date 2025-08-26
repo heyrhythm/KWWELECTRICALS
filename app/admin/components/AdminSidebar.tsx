@@ -18,7 +18,7 @@ import {
   Bell,
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 
@@ -45,7 +45,10 @@ interface AdminSidebarProps {
 
 export function AdminSidebar({ collapsed, setCollapsed }: AdminSidebarProps) {
   const pathname = usePathname();
-  
+
+  // Callback to collapse sidebar on any nav button click
+  const handleLinkClick = () => setCollapsed(true);
+
   return (
     <>
       {/* Sidebar Container */}
@@ -78,6 +81,7 @@ export function AdminSidebar({ collapsed, setCollapsed }: AdminSidebarProps) {
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={handleLinkClick}
                 className={cn(
                   'flex items-center transition-colors duration-200 p-3 rounded-r-lg',
                   isActive
