@@ -91,7 +91,7 @@ export default function OrdersPage() {
   const processRefund = (orderNumber: string) => alert(`Process refund for ${orderNumber}`);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-10">
       <h1 className="text-3xl font-bold">Orders</h1>
 
       {/* Filters */}
@@ -123,14 +123,15 @@ export default function OrdersPage() {
           />
         </div>
 
-        <div>
+        <div className='flex flex-col'>
+          <div>
           <label className="block text-sm font-medium mb-1" htmlFor="filterStartDate">Start Date</label>
           <Input
             type="date"
             id="filterStartDate"
             value={filterStartDate}
             onChange={(e) => setFilterStartDate(e.target.value)}
-            className="w-40"
+            className="w-48 md:w-40"
           />
         </div>
 
@@ -141,8 +142,9 @@ export default function OrdersPage() {
             id="filterEndDate"
             value={filterEndDate}
             onChange={(e) => setFilterEndDate(e.target.value)}
-            className="w-40"
+            className="w-48 md:w-40"
           />
+        </div>
         </div>
       </div>
 
