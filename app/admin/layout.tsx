@@ -7,7 +7,7 @@ import { AdminHeader } from './components/AdminHeader';
 const HEADER_HEIGHT = 64; // px, adjust if header height changes
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <div>

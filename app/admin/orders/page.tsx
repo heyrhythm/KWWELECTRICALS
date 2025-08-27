@@ -95,8 +95,9 @@ export default function OrdersPage() {
       <h1 className="text-3xl font-bold">Orders</h1>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-4 items-end">
-        <div>
+      <div className="flex gap-4 items-end">
+        <div className='flex flex-col'>
+          <div>
           <label className="block text-sm font-medium mb-1" htmlFor="filterStatus">Status</label>
           <Select onValueChange={(val) => setFilterStatus(val as OrderStatus | 'all')} value={filterStatus}>
             <SelectTrigger id="filterStatus" className="w-40 bg-white">
@@ -121,6 +122,7 @@ export default function OrdersPage() {
             onChange={(e) => setFilterUser(e.target.value)}
             className="w-40"
           />
+        </div>
         </div>
 
         <div className='flex flex-col'>
